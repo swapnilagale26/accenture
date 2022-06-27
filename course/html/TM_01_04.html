@@ -1,0 +1,203 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<title></title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../css/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../css/main.css"/>
+<link rel="stylesheet" type="text/css" href="../css/TM_01_04.css"/>
+<script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+<script type="text/javascript" src="../js/jquery-ui.min.js"></script> 
+<script type="text/javascript" src="../js/jquery.transit.min.js"></script> 
+<script type="text/javascript">
+//Loading::::::::::::::::::::::::::::::::
+var i=1;
+function loading(){
+	if(parent.ios) {
+		document.getElementById("ipadPlay").style.display = 'block';
+		parent.playHigh();
+	}else{
+		parent.playAudio(audio1);	
+	}
+	$("#loader").css("display","none");
+	window.removeEventListener("load", loading, false);			
+}
+function handsup()
+{
+	
+	if(i<7)
+	{
+		c1="#content1 div#c" + i;
+		i++;
+		c2="#content1 div#c" + i;
+		$(c1).css({'display':'none'});
+		$(c2).css({'display':'block'});
+		window.setTimeout(handsup,40);
+	}
+		
+}
+
+window.addEventListener("load", loading, false);
+</script>
+<style type="text/css">
+.textContainer div{ font-weight:bold;}
+.character{float:left;width:340px;}
+.top_lyr {
+	background: url(../images/TM_01_03_img1.png) no-repeat scroll 0 0 transparent;
+	border: 1px solid;
+	height: 75px;
+	width: 668px;
+	position: absolute;
+	float: right;
+	margin-left: 800px;
+}
+#content4{
+	background: url(../images/bubble1.png) no-repeat scroll 0 0 transparent;
+	height: 111px;
+	width: 190px;
+	position: absolute;
+	background-size:116%;
+	text-align:center;
+	padding-top:22px;
+	}
+#content6{
+	background: url(../images/bubble2.png) no-repeat scroll -19px 0 transparent;
+	height: 70px;
+	width: 215px;
+	position: absolute;
+	background-size:100%;
+	text-align:center;
+	padding-top:27px;
+	}
+#content8{
+	background: url(../images/bubble3.png) no-repeat scroll 0 0 transparent;
+	height: 80px;
+	width: 170px;
+	position: absolute;
+	background-size:130%;
+	text-align:center;
+	padding-top:22px;
+	}
+.content11
+{
+	margin:460px 0px 0px 760px;
+	position:absolute;
+	;font-size:16px;
+	color:rgb(136,0,21);
+	opacity:0;
+	white-space:nowrap;
+	font-size:16px !important;
+	font-weight:normal !important;
+}
+
+</style>
+</head>
+<body>
+	<div id="loader" class="loader">
+       	<img src="../images/loading.gif"/>
+    </div>
+    <div id="ipadPlay" class="blanketIpad">
+    	<span>Click <b>Play</b> to continue.</span>
+    </div> 
+           <div class="textContainer" id="bg_image">
+           <div id="trace"></div>
+           
+		<div id="content1" class="content1">
+			<div id="c1" style="display:block"><img src="../images/character/char0001.png" /></div>
+			<div id="c2"><img src="../images/character/char0002.png" /></div>
+			<div id="c3"><img src="../images/character/char0003.png" /></div>
+			<div id="c4"><img src="../images/character/char0004.png" /></div>
+			<div id="c5"><img src="../images/character/char0005.png" /></div>
+			<div id="c6"><img src="../images/character/char0006.png" /></div>
+			<div id="c7"><img src="../images/character/char0007.png" /></div>
+			<!--div id="c8"><img src="../images/character/char0008.png" width="299"/></div-->
+		</div>
+
+
+			<div id="content9" style="position:absolute;opacity:0;top:10px;left:310px;"><img src="../images/TM_01_03_img1.png" width="650"/></div>
+			<div id="content10" style="position:absolute;left:320px;top:60px;opacity:1;height:10px;width:640; display:block; overflow:hidden; height:0;"><img src="../images/TM_04_01_img5.png" width="620"/>
+			</div>
+
+		<div id="img" style="">
+              		<div id="content2" style="opacity:0;" align="center"><img src="../images/TM_04_01_img1.png" style="margin-top:60px; position:relative;left:-40px;"/></div>   
+              		<div id="content3" style="opacity:0; position:absolute; margin-left:162px; margin-top:-385px;" align="left"><img src="../images/TM_04_01_img3.png" style="margin-top:0px; width:90%;"/></div>   
+              		<div id="content4" style="opacity:0; position:absolute; margin-left:-40px; margin-top:-436px;" align="center">By when does the<br/> job need to be<br/> done?</div>                       
+              		<div id="content5" style="opacity:0; position:absolute; margin-left:285px; margin-top:-390px;" align="left"><img src="../images/TM_04_01_img2.png" style="margin-top:0px; width:90%;"/></div>   
+              		<div id="content6" style="opacity:0; position:absolute; margin-left:350px; margin-top:-438px;" align="center">How big is the job?</div>                       
+              		<div id="content7" style="opacity:0; position:absolute; margin-left:160px; margin-top:-325px;" align="left"><img src="../images/TM_04_01_img4.png" style="margin-top:0px;"/></div>   
+              		<div id="content8" style="opacity:0; position:absolute; margin-left:-30px; margin-top:-316px;" align="center">How does the<br/> job affect other<br/> jobs?</div>                       
+                </div>                              
+		<div id="content11" class="content11"><i>Click <b>Next</b> to continue.</i></div>
+    	       </div> 
+           </div><!--textContainer-->	
+    <!--Audio-->
+       <audio id="audio1" ontimeupdate='timedCount(this);'>
+        <source src="../audio/TM_FTC_01.mp3" type="audio/mpeg"/>
+        <source src="../audio/TM_FTC_01.ogg" type="audio/ogg"/>
+       </audio>
+
+
+<script type="text/javascript">
+var audio1 = document.getElementById("audio1");
+audio1.preload="auto";
+parent.currentAudio = audio1;
+
+
+parent.document.getElementById("transcript").innerHTML =  "<p>When prioritising your work, you should consider the following factors:<br/><ul><li>By when does the job need to be done?</li><li>How big is the job—will it need to be completed over a number of days?</li><li>How does the job affect other jobs—will getting one job out of the way free up people, space or time for other work that needs to be done?</li></ul></p>";
+var c=Math.floor(parent.currentAudio.currentTime);
+var totalContents=Math.floor(parent.currentAudio.duration);
+function timedCount()
+{	
+	document.getElementById("ipadPlay").style.display = 'none';
+	parent.updateSlider();		
+	c=Math.floor(parent.currentAudio.currentTime);
+	//document.getElementById("trace").innerHTML = c;
+		if (c==0)
+		{
+            window.setTimeout(handsup,500);			
+			$("#content9").animate({opacity:'1'},500);
+			//$("#content3").transition({ scale: 1 });
+		}
+		if (c==1)
+		{
+			$("#content10").animate({opacity:'1', height:'395'},500);
+			//$("#content3").transition({ scale: 1 });
+		}
+
+		if (c==2)
+		{
+			$("#content2").animate({opacity:'1'},500);
+			//$("#content3").transition({ scale: 0 });
+		}
+		if (c==5)
+		{
+			$("#content3").animate({opacity:'1'},500);
+			$("#content4").animate({opacity:'1', marginLeft:'-20'},500);
+
+		}
+		if (c==8)
+		{	
+			$("#content5").animate({opacity:'1'},500);
+			$("#content6").animate({opacity:'1', marginLeft:'330'},500);
+		}			
+		if (c==12)
+		{	
+			$("#content7").animate({opacity:'1'},500);
+			$("#content8").animate({opacity:'1', marginLeft:'-10'},500);
+		}	
+		if (c==22)
+		{
+			$("#content11").animate({'opacity':'1'});
+		}							
+
+}
+function timer(id1,id2)
+{
+	$(id1).css({transform:'scale(1)'});
+	$(id2).animate({opacity:'1',marginLeft:0},700);
+	
+}
+</script>
+</body>
+</html>

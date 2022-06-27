@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<title></title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../css/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../css/main.css"/>
+<link rel="stylesheet" type="text/css" href="../css/TM_01_06.css"/>
+<script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+<script type="text/javascript" src="../js/jquery-ui.min.js"></script> 
+<script type="text/javascript" src="../js/jquery.transit.min.js"></script> 
+<script type="text/javascript">
+//Loading::::::::::::::::::::::::::::::::
+function loading(){
+	if(parent.ios) {
+		document.getElementById("ipadPlay").style.display = 'block';
+		parent.playHigh();
+	}else{
+		parent.playAudio(audio1);	
+	}
+	$("#loader").css("display","none");
+	window.removeEventListener("load", loading, false);			
+}
+window.addEventListener("load", loading, false);
+</script>
+
+</head>
+<body>
+	<div id="loader" class="loader">	
+       	<img src="../images/loading.gif"/>
+    </div>
+     <div id="ipadPlay" class="blanketIpad">
+    	<span>Click <b>Play</b> to continue.</span>
+    </div> 
+           <div class="textContainer">
+           <div id="trace"></div>
+           
+		<div id="content1" class="hide">You need to avoid things that gobble up your time and make you inefficient. Some common time wasters include:</div>
+		<div>
+		<div id="content2" class="com hide"><span style="display:none;">Telephone calls</span><img src="../images/p06_01.png" style="width:100%;"></div>
+		<div id="content3" class="com hide"><span style="display:none;">Socializing</span><img src="../images/p06_02.png" style="width:100%;"></div>
+		<div id="content4" class="com hide"><span style="display:none;">Poor communication</span><img src="../images/p06_03.png" style="width:100%;"></div>
+		<div id="content5" class="com hide"><span style="display:none;">Indecision or procrastination</span><img src="../images/p06_04.png" style="width:100%;"></div>
+		<div id="content6" class="com hide"><span style="display:none;">No co-ordination or teamwork</span><img src="../images/p06_05.png" style="width:100%;"></div>
+		</div>
+         <div id="content7">
+			<p class="hide2"><b>Tips for avoiding time wasters:</b></p>
+			<ul>
+				<li class="hide2"><span class="hide2">Don't be a slave to your telephone.</span></li>
+				<li class="hide2"><span class="hide2">Shorten the amount of time taken up by unannounced visitors.</span></li>
+				<li class="hide2"><span class="hide2"><span>Know when to ask for help.</span></li>
+			</ul>
+		</div>              
+    	   <div id="instruction"><i>Click<b> Next</b> to continue.</i></div>
+           </div><!--textContainer-->	
+    <!--Audio-->
+       <audio id="audio1" ontimeupdate='timedCount(this);'>
+        <source src="../audio/TM_CDTW_Con02_new.mp3" type="audio/mpeg"/>
+        <source src="../audio/TM_CDTW_Con02_new.ogg" type="audio/ogg"/>
+       </audio>
+
+
+<script type="text/javascript">
+var audio1 = document.getElementById("audio1");
+audio1.preload="auto";
+parent.currentAudio = audio1;
+s="<p>In order to be efficient, you need to avoid things that gobble up your time. Some common time wasters include:</p>";
+s= s + "<p><ul><li>Telephone calls</li>";
+s= s + "<li>Socializing</li>";
+s= s + "<li>Poor communication</li>";
+s= s + "<li>Indecision or procrastination, and</li>";
+s= s + "<li>No co-ordination or teamwork</li></ul></p>";
+s= s + "<p>Some useful tips for avoiding time wasters are:</p>";
+s= s + "<p><ul><li><b>Don't be a slave to your telephone.</b> Organise your calls, and ask others to call you at certain times.</li>";
+s= s + "<li><b>Shorten the amount of time taken up by unannounced visitors.</b> Offer to get back to a person later so that you can give them your undivided attention.</li>";
+s= s + "<li><b>Know when to ask for help.</b> Learn to recognise when you don’t understand something and seek assistance from your supervisor.</li></ul></p>";
+
+parent.document.getElementById("transcript").innerHTML =s;  
+var c=Math.floor(parent.currentAudio.currentTime);
+var totalContents=Math.floor(parent.currentAudio.duration);
+function timedCount()
+{	
+	document.getElementById("ipadPlay").style.display = 'none';
+	parent.updateSlider();		
+	c=Math.floor(parent.currentAudio.currentTime);
+	//document.getElementById("trace").innerHTML = c;
+		if (c==1)
+		{
+			//$("#content1").addClass("slideinright50");
+			$("#content1").fadeIn(200);
+		}
+		if (c==8)//8
+		{
+			//$("#content2").addClass("rotatebackward");		
+			$("#content2").fadeIn(200);
+		}
+		if (c==9)//9
+		{
+			//$("#content3").addClass("rotateforward");
+			$("#content3").fadeIn(200);
+		}
+		if (c==11)//11
+		{
+			//$("#content4").addClass("rotatebackward");
+			$("#content4").fadeIn(200);
+		}
+		if (c==13)//13
+		{	
+			//$("#content5").addClass("rotateforward");
+			$("#content5").fadeIn(200);
+		}
+		if (c==16)//16
+		{
+			//$("#content6").addClass("rotatebackward");
+			$("#content6").fadeIn(200);
+		}
+		if (c==18)//18
+		{
+			$("#content7").fadeIn(500);
+		}
+		if (c==19)//19
+		{
+			$("#content7 p").addClass("slideinright50");
+		}
+
+		if (c==22)//22
+		{
+			$("#content7 ul li:eq(0)").css({'opacity':'1'});
+			$("#content7 ul li:eq(0) span").addClass("slideinright50");
+		}
+		if (c==30)//30
+		{
+			$("#content7 ul li:eq(1)").css({'opacity':'1'});
+			$("#content7 ul li:eq(1) span").addClass("slideinright50");
+		}
+		if (c==39)//39
+		{
+			$("#content7 ul li:eq(2)").css({'opacity':'1'});
+			$("#content7 ul li:eq(2) span").addClass("slideinright50");
+		}
+		if (c==46)
+		{	
+			//$("#instruction").addClass("slideinright50");
+			$("#instruction").fadeIn(200);
+		}		
+		
+}
+
+
+</script>
+</body>
+</html>

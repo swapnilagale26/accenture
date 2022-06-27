@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<title></title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../css/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../css/main.css"/>
+<link rel="stylesheet" type="text/css" href="../css/TM_01_11.css"/>
+<script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+<script type="text/javascript" src="../js/jquery-ui.min.js"></script> 
+<script type="text/javascript" src="../js/jquery.transit.min.js"></script> 
+<script type="text/javascript">
+//Loading::::::::::::::::::::::::::::::::
+var i=1;
+function loading(){
+	$("#loader").css("display","none");
+	//parent.playAudio(audio1);	
+	window.removeEventListener("load", loading, false);
+				
+}
+function handsup()
+{
+	
+	if(i<7)
+	{
+		c1="#content1 div#c" + i;
+		i++;
+		c2="#content1 div#c" + i;
+		$(c1).css({'display':'none'});
+		$(c2).css({'display':'block'});
+		window.setTimeout(handsup,40);
+	}
+		
+}
+window.addEventListener("load", loading, false);
+</script>
+</head>
+<body style="overflow:hidden">
+	<div id="loader" class="loader">
+       	<img src="../images/loading.gif"/>
+    </div>
+           <div class="textContainer">
+           <div id="trace"></div>
+           	<div id="content0"></div>
+		
+		<div id="content1" style="position:absolute;margin:40px 0px 0px 0px;z-index:1;">
+			<div id="c1" style="display:block"><img src="../images/character/char0001.png"/></div>
+			<div id="c2"><img src="../images/character/char0002.png"/></div>
+			<div id="c3"><img src="../images/character/char0003.png"/></div>
+			<div id="c4"><img src="../images/character/char0004.png"/></div>
+			<div id="c5"><img src="../images/character/char0005.png"/></div>
+			<div id="c6"><img src="../images/character/char0006.png"/></div>
+			<div id="c7"><img src="../images/character/char0007.png"/></div>
+		</div>
+
+		<div id="clipboard"><img src="../images/assessment/congratulation.png"/></div>
+		                                 
+    	       
+           </div><!--textContainer-->	
+    <!--Audio-->
+       
+
+<script type="text/javascript">
+parent.disableNext();
+parent.disableBack();
+parent.sliderEnd();
+s="";
+parent.document.getElementById("transcript").innerHTML = s;
+window.setTimeout(function()
+{
+	$("#clipboard").addClass("bouncedown");
+	window.setTimeout(function(){
+		handsup();	
+	},500);
+},100);
+</script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>HTML Development</title>
+        <meta charset="utf-8" />
+        <meta name = "viewport" content = "width=device-width, user-scalable = yes" />
+        <link rel="stylesheet" type="text/css" href="css/main.css"/>
+        <script language="javascript" src="scripts/APIWrapper.js"></script>
+		<script language="javascript" src="scripts/LMSWrapper.js"></script>
+        <script type="text/javascript">
+		var openWinCalled = false
+		function openWin()
+		{
+			//alert("openWin() function is called");
+			if(!openWinCalled)
+			{
+				w=1010;
+				h=670;
+				window_border_left_right=10;
+				window_border_top_bottom=40;
+				
+				x = (screen.width - (w + window_border_left_right)) / 2;
+				y = (screen.height -(h + window_border_top_bottom)) / 2;
+				
+				if(API)
+				{
+					
+					_isLms = "true";
+					StartTime = GetTime();
+					//Collect the common lms variables
+					lesson_location					= 	truncateSpaces(API.LMSGetValue("cmi.core.lesson_location"));
+					lesson_status					=	truncateSpaces(API.LMSGetValue("cmi.core.lesson_status"));
+					student_id						=	truncateSpaces(API.LMSGetValue("cmi.core.student_id"));
+					student_name					=	truncateSpaces(API.LMSGetValue("cmi.core.student_name"));
+					raw								=	truncateSpaces(API.LMSGetValue("cmi.core.score.raw"));
+					suspend_data 					= 	truncateSpaces(API.LMSGetValue("cmi.suspend_data"));
+	
+				//	alert("Case:LMS - course/home.htm?isLms=" + _isLms + "&lesson_location=" + lesson_location + "&lesson_status=" + lesson_status + "&student_id=" + student_id + "&student_name=" + student_name + "&raw=" + raw + "&suspend_data=" + suspend_data);
+					
+					var currentdate = new Date();
+					x = (screen.width - (w + window_border_left_right)) / 2;
+					y = (screen.height -(h + window_border_top_bottom)) / 2;
+					remote = location.replace("course/home.html?isLms=" + _isLms + "&lesson_location=" + lesson_location + "&lesson_status=" + lesson_status + "&student_id=" + student_id + "&student_name=" + student_name + "&raw=" + raw + "&suspend_data=" + suspend_data, "_self","toolbar=0,directories=0,location=0,directories=0,status=0,menubar=0,fullscreen=0,scrollbars=0,width="+ w +",height="+ h +",left="+ x +",top="+ y + ",resizable=0");
+				}
+				else
+				{
+					//When running in non LMS version
+					_isLms="false";
+					lesson_location="";
+					course_window=location.replace("course/home.html?isLms=" + _isLms + "&lesson_location=" + lesson_location, "_self");
+					
+					//course_window.focus();
+				}
+				//openWinCalled = true
+			}
+		}
+		//-->
+			</script>
+			<script language="javascript">
+			//LMS VARIABLES
+			var student_id = "";
+			var student_name = "";
+			var courseComplete;
+			var jepScore=0;
+			var scores = new Array();
+			
+			//LMS API
+			var _isLms = ""
+			var API;
+			var findAPITries = 0;
+			try
+			{
+				API = getAPI();
+				// Must call initialize
+				API.LMSInitialize("");
+				//_isLms = "LMS";
+			}
+			catch(e)
+			{
+				API = null;
+				//alert("Non LMS course");
+				
+			}
+			
+			//OTHER VARIABLES
+			var queryString = "";
+			var indexstart= new Date(); //time on course
+			queryString = unescape(document.location.toString());
+			var intNum = 0;
+			var objNum = 0;
+			var inters = new Array();   // To pack interactions/objectives
+			var maxScores = new Array();  //to keep track of how many have been presented
+	
+			var ElapsedTime = "";
+			starttime = new Date();
+		//-->
+		</script>
+	</head>
+<body onUnload="exitAu()" text="#43492B" link="#43492B" vlink="#43492B" alink="#43492B" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" class="container4">
+
+	
+	
+	<div class="shadow"><img class="logo" src="course/images/bg.png" />
+  <a href="#" onclick="openWin()" ><font size="4"  face=" Arial, Verdana, Helvetica, sans-serif">Launch Course</font></a>
+</div>
+
+
+</body>
+</html>

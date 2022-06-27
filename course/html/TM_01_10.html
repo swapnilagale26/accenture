@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<title></title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../css/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../css/main.css"/>
+<link rel="stylesheet" type="text/css" href="../css/assement.css"/>
+<script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+<script type="text/javascript" src="../js/jquery-ui.min.js"></script> 
+<script type="text/javascript" src="../js/jquery.transit.min.js"></script> 
+<script type="text/javascript" src="../js/assessment.js"></script>
+<script type="text/javascript">
+//Loading::::::::::::::::::::::::::::::::
+var multiple=false;//true if there is more then 1 answer correct
+var option=4;//give number of option for the question
+var correctanswer=[0,1,0,0];//put 1 for the correct answer
+var clickflag=[0,0,0,0];
+var submit=0;
+var lock=0;
+
+function loading(){
+	$("#loader").css("display","none");
+	//parent.playAudio(audio1);	
+	window.removeEventListener("load", loading, false);			
+}
+window.addEventListener("load", loading, false);
+</script>
+<style>
+
+</style>
+</head>
+<body>
+	<div id="loader" class="loader">
+       	<img src="../images/loading.gif"/>
+    </div>
+           <div class="textContainer">
+           <div id="trace"></div>
+           	<div id="back"><img src="../images/assessment/background.png" /></div>
+		<div id="icon"><img src="../images/assessment/img_Q.png" /></div>
+		<div id="question" class="statement">How would you cut down on time wasters?</div>
+		<!--multiple selelt-->
+              	<div id="options">
+                    	<div id="c1" onclick="select(1);"><div class="square circle"><div class="insidesquare circle"></div></div>Place your phone on silent and stop answering calls.</div>
+                    	<div id="c2" onclick="select(2);"><div class="square circle"><div class="insidesquare circle"></div></div> <div class="right"><img src="../images/assessment/right-tick.png"></div>Recognise when you don’t understand something and seek assistance.</div>
+			<div id="c3" onclick="select(3);"><div class="square circle"><div class="insidesquare circle"></div></div>Place a ‘Do not Disturb’ sign on your desk</div>
+                    	<div id="c4" onclick="select(4);"><div class="square circle"><div class="insidesquare circle"></div></div>Stop going on breaks during work hours.</div>
+               	</div>
+		<p id="instruction">Select the correct response and click <b>Submit</b>.</p>                    
+                <div id="submit" onClick="checkAnswer()">Submit</div>
+                     
+                <div id="feedback"><b>Feedback</b><div></div></div>
+                       
+		
+           </div>
+           <!--textContainer-->	
+   
+<script type="text/javascript">
+init();
+parent.sliderEnd();
+function displayfeedback(temp)
+{
+	if(temp==true)
+	{
+		s="<p style='margin:0px'><b>That’s correct.</b><br>One of the ways to cut down on time wasters is to recognise when you don’t understand something and seek assistance.</p>";
+	}
+	else
+	{
+		s="<p style='margin:0px'><b>That’s incorrect.</b><br>One of the ways to cut down on time wasters is to recognise when you don’t understand something and seek assistance.</p>";
+	}
+}
+parent.document.getElementById("transcript").innerHTML ="";
+
+
+</script>
+</body>
+</html>

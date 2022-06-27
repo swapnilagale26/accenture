@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title></title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="css/intro.css"/>
+<link rel="stylesheet" type="text/css" href="css/main.css"/>
+<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="js/navigation.js"></script>
+<script type="text/javascript">
+//Loading::::::::::::::::::::::::::::::::
+var second=90;
+var hour=0;
+var minute=220;
+var flag=[0,0,0,0,0];
+var i=1;
+var sI;
+function loading(){
+	$("#loader").css("display","none");
+	window.removeEventListener("load", loading, false);
+	document.getElementById("audio1").play();
+				
+}
+window.addEventListener("load", loading, false);
+
+</script>
+</head>
+<body style="margin:0px;padding:0px; background-color:#ffffff;">
+	<div id="loader" class="loader">
+       	<img src="images/loading.gif"/>
+    </div>
+
+	<div id="container">
+		<div id="middle">
+			<div id="bar1">
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+			</div>
+			<div id="bar2">
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+			</div>
+			<div id="clock">
+				<div id="inside"></div>
+				<div id="hour"></div>
+				<div id="minute"></div>
+				<div id="second"></div>
+				<div id="c1"></div>
+				<div id="c2"></div>
+				
+				<div id="char1">
+					<div id="ch1"><img src="images/intro/icon1_1.png"/></div>
+					<div id="ch2"><img src="images/intro/icon1_2.png"/></div>
+					<div id="ch3"><img src="images/intro/icon1_3.png"/></div>
+				</div>
+				<div id="char2">
+					<div id="ch1"><img src="images/intro/icon2_1.png"/></div>
+					<div id="ch2"><img src="images/intro/icon2_2.png"/></div>
+					<div id="ch3"><img src="images/intro/icon2_3.png"/></div>
+				</div>
+				<div id="char3">
+					<div id="ch3"><img width="240" src="images/intro/icon3_2.png"/></div>
+					<div id="ch1"><img width="240" src="images/intro/icon3_3.png"/></div>
+					<div id="ch2"><img width="240" src="images/intro/icon3_4.png"/></div>
+				</div>
+				<div id="char4">
+					<div id="ch1"><img width="235" src="images/intro/icon4_1.png"/></div>
+					<div id="ch2"><img width="235" src="images/intro/icon4_2.png"/></div>
+					<div id="ch3"><img width="235" src="images/intro/icon4_3.png"/></div>
+					<div id="ch4"><img width="235" src="images/intro/icon4_4.png"/></div>
+				</div>
+			</div>
+			
+			<div id="finish">
+				<div id="c1"><div><img height="80" width="80" src="images/intro/icon1_1.png"/></div></div>
+				<div id="c2"><div><img height="80" width="80" src="images/intro/icon2_1.png"/></div></div>
+				<div id="c3"><div><img height="80" width="75" src="images/intro/icon3_1.png"/></div></div>
+				<div id="c4"><div><img height="80" width="80" src="images/intro/icon4_1.png"/></div></div>
+			</div>
+			<div id="time" style="font-weight:bold;font-size:160px;position:absolute;margin:150px 0px 0px 30px">
+				<div id="c1">T</div>
+				<div id="c2">I</div>
+				<div id="c3">M</div>
+				<div id="c4">E</div>
+			</div>
+			<div id="management" style="opacity:0;position:absolute;color:#373535;font-size:68px;margin:210px 0px 0px 55px">MANAGEMENT</div>
+		</div>
+		
+		<div id="button" onClick="skipIntro();">Skip>></div>
+	</div>
+	
+	
+	   <audio id="audio1" preload="auto" onplay="display();" onEnded="skipIntro();">
+	    <source src="audio/0_audio.mp3" type="audio/mpeg"/>
+	    <source src="audio/0_audio.ogg" type="audio/ogg"/>
+	    <audio>
+      
+<script type="text/javascript">
+//document.getElementById("audio1").preload="auto";
+function display ()
+{
+	$("#bar1").addClass("toptodown");
+	delayElement("#bar2","toptodown",500);
+	$("#button").animate({'margin':'100px 0px 0px 900px'},1000);
+	delayElement("#clock","slideinleft",1000);
+	window.setTimeout(rotateSecond,1750);
+	window.setTimeout(function(){animate("#char1",1);},2000);
+	window.setTimeout(function(){rotateHour(20,hour);},2000);
+	window.setTimeout(function(){rotateMinute(2*360-130,minute);},2000);
+	
+	window.setTimeout(function(){animate("#char2",2);},5000);
+	window.setTimeout(function(){rotateHour(185,hour);},5000);
+	window.setTimeout(function(){rotateMinute(4*360-5,minute);},5000);
+	
+	window.setTimeout(function(){animate("#char3",3);},9000);
+	window.setTimeout(function(){rotateHour(0,hour);},9000);
+	window.setTimeout(function(){rotateMinute(90-5,minute);},9000);
+	
+	window.setTimeout(function(){animate("#char4",4);},13000);
+	window.setTimeout(function(){rotateHour(25,hour);},13000);
+	window.setTimeout(function(){rotateMinute(90*3-5,minute);},13000);
+	
+	window.setTimeout(function(){
+		window.setTimeout(function(){showTime(1);},10);
+		window.setTimeout(function(){showTime(2);},10);
+		window.setTimeout(function(){showTime(3);},10);
+		window.setTimeout(function(){showTime(4);},10);
+	},17000);
+
+
+
+window.setTimeout(function(){
+	//$("#time").animate({'font-size':'150px','margin-top':'30px'},500);
+	$("#time").addClass("upscale");
+	window.setTimeout(function(){
+		$("#management").css({'opacity':'1'});
+		$("#management").addClass("bouncetext");
+	},500);
+},18000);
+
+}
+function delayElement(id,c,d)
+{
+	window.setTimeout(function(){$(id).addClass(c);},d);
+}
+
+function showTime(id)
+{
+	$("#finish div#c" + id + " div img").css({'opacity':'0'});
+	$("#finish div#c" + id).addClass("downscale");
+	window.setTimeout(function(){
+		$("#time div#c" + id).animate({'opacity':'1'},100);
+	},470);
+}
+
+function images(start,end,content,no)
+{
+if(flag[no]==0)
+{
+	if(start<end)
+	{
+		start++;
+		$(content + start).addClass("show");
+		if(start==1)
+		{
+			$(content + end).removeClass("show");
+		}
+		else
+		{
+			$(content + (start-1)).removeClass("show");
+		}
+	}
+	if(start!=end)
+	{
+		if(no==3 || no==4)
+		{
+			time=300;
+		}
+		else
+		{
+			time=100;
+		}
+		window.setTimeout(function(){images(start,end,content,no);},time);
+	}
+	else if(start==end)
+	{
+		window.setTimeout(function(){images(0,end,content,no);},100);
+	}
+}
+}
+function animate(id,no)
+{
+	s=id + " div#ch";
+	
+	if(no==4)
+	{
+		images(0,4,s,no);
+	}
+	else if(no==3)
+	{
+		//$(s + 1).addClass("show");
+		images(0,2,s,no);
+	}
+	else
+	{
+		//$(s + 1).addClass("show");
+		images(0,3,s,no);
+	}
+	$(id).animate({'margin':'100px 0px 0px 80px'});
+	window.setTimeout(function(){
+		$(id).animate({'margin':'100px 0px 0px -300px'});
+		window.setTimeout(function(){flag[no]=1;$("#finish div#c" + no).addClass("bouncein");},10);
+	},2500);
+}
+var currentAudio = document.getElementById("audio1");
+function skipIntro() 
+{	
+	currentAudio.pause();
+	//clearTimeout(sI);
+	parent.loadPage(0); 
+	parent.document.getElementById("introContainer").style.display='none';
+}
+function rotateSecond()
+{
+	temp="rotate(" + second + "deg)";//rotate(90deg)'rotate(' + second + 'deg)'
+	$("#second").css({'-webkit-transform':temp,'transform':temp,'-moz-transform':temp,'-ms-transform':temp,'-o-transform':temp});
+	second=second+5;
+	window.setTimeout(rotateSecond,100);
+}
+function rotateMinute(add,cm)
+{
+	if(minute<(cm+add))
+	{
+	minute=minute +(add*0.04);//time/calling time
+	temp="rotate(" + minute + "deg)";
+	$("#minute").css({'-webkit-transform':temp,'transform':temp,'-moz-transform':temp,'-ms-transform':temp,'-o-transform':temp});
+	i++;
+	window.setTimeout(function(){rotateMinute(add,cm)},100);
+	}
+
+}
+function rotateHour(add,cm)
+{
+	if(hour<(cm+add))
+	{
+	hour=hour +(add*0.04);
+	temp="rotate(" + hour + "deg)";
+	$("#hour").css({'-webkit-transform':temp,'transform':temp,'-moz-transform':temp,'-ms-transform':temp,'-o-transform':temp});
+	i++;
+	window.setTimeout(function(){rotateHour(add,cm)},100);
+	}
+}
+</script>
+</body>
+</html>

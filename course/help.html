@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name = "viewport" content = "width=device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable = no" />
+<title>Help</title>
+<link rel="stylesheet" type="text/css" href="css/reset.css"/>
+<link rel="stylesheet" type="text/css" href="css/main.css"/>
+<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript">
+//Loading::::::::::::::::::::::::::::::::
+function loading(){
+	$("#loader").css("display","none");		
+	window.removeEventListener("load", loading, false);
+	}
+	window.addEventListener("load", loading, false);
+
+</script>
+<style type="text/css">
+/* help styles */
+@font-face {
+    font-family: 'MyriadProCond';
+	src: url('fonts/MyriadPro-Cond.eot');
+    src: url('fonts/MyriadPro-Cond.eot?#iefix') format('embedded-opentype'),
+         url('fonts/MyriadPro-Cond.woff') format('woff'),
+         url('fonts/MyriadPro-Cond.ttf') format('truetype');
+	     font-weight: normal;
+	     font-style: normal;
+}
+
+@font-face {
+    font-family: 'MyriadProRegular';
+	src: url('fonts/MyriadPro-Regular.eot');
+    src: url('fonts/MyriadPro-Regular.eot?#iefix') format('embedded-opentype'),
+	     url('fonts/MyriadPro-Regular.ttf') format('truetype'),
+		 font-weight: normal;
+	     font-style: normal;
+}
+body
+{
+	font-family: 'MyriadProRegular', sans-serif;
+	overflow:hidden;
+}
+.ost{
+	font-size:18px;
+	position:absolute;
+	color:#900;
+	top:150px;
+	left: 260px;
+}
+#helpContainer{
+	position:absolute;
+	background-image:url(images/help_bg.png);
+	background-repeat:no-repeat;	
+	margin:0 auto;
+	padding:0px;
+	width:980px;
+	height:530px;	
+	display:block;
+	overflow: hidden;
+	}
+#helpBtnContainer{
+	position:absolute;
+	left:12px;
+	top:372px;
+	width:950px;
+	height:45px;
+	
+	}
+#btn_1{
+	
+	height:35px;
+	width:40px;
+	margin-top:8px;
+	margin-left:15px;
+	float:left;
+}
+#btn_2{	
+	height:35px;
+	width:40px;
+	margin-top:8px;
+	margin-left:8px;
+	float:left;
+}
+#btn_3{	
+	height:35px;
+	width:40px;
+	margin-top:8px;
+	margin-left:13px;
+	float:left;
+}
+#btn_4{	
+	height:35px;
+	width:37px;
+	margin-top:8px;
+	margin-left:8px;
+	float:left;
+}
+#btn_5{
+	
+	height:35px;
+	width:40px;
+	margin-top:8px;
+	margin-left:470px;
+	float:left;
+}
+#btn_6{
+	
+	height:35px;
+	width:37px;
+	margin-top:8px;
+	margin-left:3px;
+	float:left;
+}
+#btn_7{
+	
+	height:39px;
+	width:40px;
+	margin-top:4px;
+	margin-left:24px;
+	float:left;
+}
+#btn_8{
+	
+	height:40px;
+	width:58px;
+	margin-top:4px;
+	margin-left:10px;
+	float:left;
+}
+#btn_9{
+	height:40px;
+	width:40px;
+	margin-top:4px;
+	margin-left:11px;
+	float:left;
+}
+.shadow {
+  -moz-box-shadow:    4px 4px 5px 0px #999999;
+  -webkit-box-shadow: 4px 4px 5px 0px #999999;
+  box-shadow:         4px 4px 5px 0px #999999;
+}
+.desc{	
+	display:none;
+	opacity:0;
+	background-color:#8FC8EA;
+	border:3px solid #fff;
+	border-radius:10px;
+	height:35px;
+	width:430px;
+	margin-top:25px;
+	padding:15px;
+	position: absolute;
+	
+}
+.desco:after, .desc:before {
+	border: solid transparent;
+	content: ' ';
+	height: 0;
+	left: 35px;
+	position: absolute;
+	width: 0;
+}
+.desc:before {
+	border-width: 14px;	
+	border-bottom-color: #8FC8EA;	
+	border-left-color: #8FC8EA;	
+	top: -25px;
+}
+
+.desc2{
+	display:none;
+	opacity:0;
+	background-color:#8FC8EA;
+	border:3px solid #fff;
+	border-radius:10px;
+	height:35px;
+	width:430px;
+	margin-left:485px;
+	margin-top:25px;
+	padding:15px;
+	position: absolute;	
+}
+.desco2:after, .desc2:before {
+	border: solid transparent;
+	content: ' ';
+	height: 0;
+	left: 425px;
+	position: absolute;
+	width: 0;
+}
+.desc2:before {
+	border-width: 14px;	
+	border-bottom-color: #8FC8EA;	
+	border-left-color: #8FC8EA;	
+	top: -25px;
+}
+</style>
+
+</head>
+<body id="helpContainer">
+	<!--loading--> 
+	<div id="loader" class="loader">
+       	<img src="images/loading.gif"/>
+    </div>
+	<div class="ost"><p><b>Rollover on each icon to learn about it's functionality.</b></p></div>
+    <div id="helpBtnContainer">
+    	<ul>
+            <li><a href="#" onFocus="this.blur();" id="btn_1"></a></li>
+            <li><a href="#" onFocus="this.blur();" id="btn_2"></a></li>
+            <li><a href="#" onFocus="this.blur();" id="btn_3"></a></li>
+            <li><a href="#" onFocus="this.blur();" id="btn_4"></a></li>
+            <li><a href="#" onFocus="this.blur();" id="btn_5"></a></li>
+            <li><a href="#" onFocus="this.blur();" id="btn_6"></a></li>
+            <li><a href="#" onFocus="this.blur();" id="btn_7"></a></li>
+            <li><a href="#" onFocus="this.blur();" id="btn_8"></a></li>
+            <li><a href="#" onFocus="this.blur();" id="btn_9"></a></li>
+        </ul>
+    <div>
+    <div style="clear:both"</div>
+    <div id="btn_1_desc" class="desc shadow"><p>Click the <b>Menu</b> button to view a listing of every screen in this course. 
+You can then access the screens in any order.</p></div>
+
+	<div id="btn_2_desc" class="desc shadow" style="margin-left:45px !important;"><p>Use the <b>Audio On/Off</b> button to turn the course audio on and off.</p></div>
+    <div id="btn_3_desc" class="desc shadow" style="margin-left:98px !important;"><p>Click the <b>Transcript</b> button to view the audio content being narrated for a particular screen. </p></div>
+    <div id="btn_4_desc" class="desc shadow" style="margin-left:143px !important;"><p>Click the <b>Help</b> button to open the Help Screen.</p></div>
+    <div id="btn_5_desc" class="desc2 shadow" style="margin-left:265px !important;"><p>Click the <b>Replay</b> button to revisit the current screen.</p></div>
+    <div id="btn_6_desc" class="desc2 shadow" style="margin-left:305px !important;"><p>Use this toggle button to <b>Play</b> and <b>Pause</b> the audio or animation on a screen.</p></div>
+    <div id="btn_7_desc" class="desc2 shadow" style="margin-left:368px !important;"><p>Click the <b>Back</b> button whenever you want to go back to the previous screen.</p></div>
+    <div id="btn_8_desc" class="desc2 shadow" style="margin-left:428px !important;"><p>The <b>Page Counter</b> progress indicator shows your progress through the course.</p></div>
+    <div id="btn_9_desc" class="desc2 shadow"><p>Click the <b>Next</b> button when you have completed viewing a screen and 
+are ready to move on to the next screen.</p></div>
+</body>
+<script type="text/javascript">
+for (var i=1; i<=9; i++){
+	document.getElementById("btn_"+i).addEventListener('mouseover',showDesc,false);
+	document.getElementById("btn_"+i).addEventListener('mouseout',showDesc,false);
+}
+function showDesc(ev){
+	var btnName = ev.target.id+"_desc";
+	document.getElementById(btnName).style.display = 'block';
+	if (ev.type=="mouseover"){		
+		$("#"+btnName).animate({opacity:'1'},200);
+	}else if (ev.type=="mouseout"){
+		$("#"+btnName).animate({opacity:'0'},100);
+	}
+}
+</script>
+</html>

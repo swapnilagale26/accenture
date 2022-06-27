@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name = "viewport" content = "width=device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable = no" />
+<title></title>
+<link rel="stylesheet" type="text/css" href="css/reset.css"/>
+<link rel="stylesheet" type="text/css" href="css/main.css"/>
+<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript">
+//Loading::::::::::::::::::::::::::::::::
+function loading(){
+	$("#loader").css("display","none");
+	window.removeEventListener("load", loading, false);
+				
+}
+window.addEventListener("load", loading, false);
+
+</script>
+</head>
+<body style="margin-top:0px; margin-left:0px; padding-top:0px; padding-left:0px; background-color:#ffffff;">
+	<div id="loader" class="loader">
+       	<img src="images/loading.gif"/>
+    </div>
+    
+   <video id="introVideo" autoplay width="1010" height="665">
+        <source src="video/0.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'/>
+     </video>
+    <input style="position:absolute; z-index:9999; margin-left:875px; margin-top:-60px;" value="Skip >>" class="commonBtn" onClick="skipIntro()"/> 
+ 
+<script type="text/javascript">
+	var currentVideo = document.getElementById("introVideo");
+	currentVideo.addEventListener('ended',skipIntro,false);			
+	function skipIntro(){	
+		currentVideo.pause();
+		parent.loadPage(0); 
+		parent.document.getElementById("introContainer").style.display='none';
+	}			
+</script>
+</body>
+</html>

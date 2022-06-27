@@ -1,0 +1,52 @@
+body
+{	
+	overflow:hidden;
+	max-width:976px;
+}
+.textContainer{ width:100% !important;}
+#content3_back{ width:100% !important;}
+#content0
+{
+	width:100%;
+	height:492px;
+	background:url('../images/S01.jpg') no-repeat 0px 0px / 100% 100% white;
+	position:absolute;
+	
+}
+#content1 div
+{
+	position:absolute;display:none;
+}
+.bouncedown
+{
+	animation:bouncedown 0.5s forwards;
+	-webkit-animation:bouncedown 0.5s forwards;
+	-moz-animation:bouncedown 0.5s forwards;
+	-o-animation:bouncedown 0.5s forwards;
+	-ms-animation:bouncedown 0.5s forwards;
+}
+@keyframes bouncedown{0%{margin-top:-360px}80%{margin-top:-40px}100%{margin-top:-70px}} 
+@-webkit-keyframes bouncedown{0%{margin-top:-360px}80%{margin-top:-40px}100%{margin-top:-70px}}
+@-moz-keyframes bouncedown{0%{margin-top:-360px}80%{margin-top:-40px}100%{margin-top:-70px}}
+@-o-keyframes bouncedown{0%{margin-top:-360px}80%{margin-top:-40px}100%{margin-top:-70px}}
+@-ms-keyframes bouncedown{0%{margin-top:-360px}80%{margin-top:-40px}100%{margin-top:-70px}}
+#clipboard{position: relative;margin: -360px 0px 0px 300px;}
+#clipboard img{ width:100%; max-width:600px;}
+
+@media screen and (max-width: 800px) { 
+	#content0{background-image:none !important;}
+	#content1{display:none !important;}
+    #clipboard{position: relative; text-align:center !important; margin:0px !important;}
+}
+@media screen and (max-width: 550px) { 
+    #clipboard{top:50px !important;}
+}
+
+@media screen and (max-width: 320px) {
+    #clipboard img{ width:100%; max-width:600px; height:198px !important;}		
+}
+@media screen and (max-width: 240px) {
+	#clipboard{top:70px !important;}
+    #clipboard img{ width:100%; max-width:600px; height:198px !important;}	
+}
+

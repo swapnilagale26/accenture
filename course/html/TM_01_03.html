@@ -1,0 +1,364 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<title></title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../css/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../css/main.css"/>
+<link rel="stylesheet" type="text/css" href="../css/TM_01_03.css"/>
+<script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+<script type="text/javascript" src="../js/jquery-ui.min.js"></script> 
+<script type="text/javascript" src="../js/jquery.transit.min.js"></script> 
+<script type="text/javascript">
+//Loading::::::::::::::::::::::::::::::::
+var i=1;
+var totaltime=0;
+var playing=0;
+var previoustime=0;
+function loading(){
+	if(parent.ios) {
+		document.getElementById("ipadPlay").style.display = 'block';
+		parent.playHigh();
+	}else{
+		parent.playAudio(audio1);	
+	}
+	$("#loader").css("display","none");
+	window.removeEventListener("load", loading, false);			
+}
+window.addEventListener("load", loading, false);
+function handsup()
+{
+	
+	if(i<7)
+	{
+		c1="#content1 div#c" + i;
+		i++;
+		c2="#content1 div#c" + i;
+		$(c2).css({'display':'block'});
+		$(c1).css({'display':'none'});
+		window.setTimeout(handsup,40);
+	}
+}
+function handsdown()
+{
+	if(i>1)
+	{
+		c1="#content1 div#c" + i;
+		i--;
+		c2="#content1 div#c" + i;
+		$(c1).css({'display':'none'});
+		$(c2).css({'display':'block'});
+		temp=window.setTimeout(handsdown,40);
+	}	
+}
+</script>
+</head>
+<body>
+	<div id="loader" class="loader">
+       	<img src="../images/loading.gif"/>
+    </div>
+    <div id="ipadPlay" class="blanketIpad">
+    	<span>Click <b>Play</b> to continue.</span>
+    </div>
+           <div class="textContainer">
+           <div id="trace"></div>           
+		<div id="content1" class="content1">
+			<div id="c1" style="display:block;"><img src="../images/character/char0001.png" /></div>
+			<div id="c2"><img src="../images/character/char0002.png" /></div>
+			<div id="c3"><img src="../images/character/char0003.png" /></div>
+			<div id="c4"><img src="../images/character/char0004.png" /></div>
+			<div id="c5"><img src="../images/character/char0005.png" /></div>
+			<div id="c6"><img src="../images/character/char0006.png" /></div>
+			<div id="c7"><img src="../images/character/char0007.png" /></div>
+			<!--div id="c8"><img src="../images/character/char0008.png" width="299"/></div-->
+		</div>
+
+              	<div id="content2" class="content2"><img src="../images/TM_01_02_img1.png" width="100%"/></div>   
+		
+		<div id="content3" class="content3">
+			<div id="c1" ><img src="../images/TM_01_03_img1.png" width="100%"/></div>
+			<div id="c2"><img src="../images/TM_01_03_img2.png"/></div>
+			<div id="c3">Linda is having a tough day at work. She has many documentation tasks that need to be completed today. Apart from these tasks, she also needs to attend a client meeting and an important training session. She feels overburdened with work and she doesn't know where to start.</div>
+			
+		</div>	
+		<div id="content4" class="content4">
+           	<div id="c1">What do you think Linda should do?</div>
+			<div id="c2" onClick="result(1);">
+	            <img src="../images/TM_01_03_img5.png" class="image_com1">
+                <img  class="image_com" src="../images/TM_01_03_img4.png"/>                
+                <span class="point">She should inform her manager that she feels overburdened and that she would need some help in completing these tasks.</span>				
+			</div>
+                <div id="c3" onClick="result(2);">
+                <img src="../images/TM_01_03_img5.png" class="image_com1">
+                <img  class="image_com" src="../images/TM_01_03_img4.png">                
+                <span class="point">She should start working on the tasks in the order in which she received them.</span>
+			</div>
+			<div id="c4" onClick="result(3);">
+                <img src="../images/TM_01_03_img5.png" class="image_com1">
+                <img  class="image_com" src="../images/TM_01_03_img4.png">
+                <span class="point">She should organise her work in order of urgency and importance.</span>
+			</div>
+			<div id="c5" onClick="result(4);">
+	            <img src="../images/TM_01_03_img5.png" class="image_com1">
+                <img  class="image_com" src="../images/TM_01_03_img4.png">                
+                <span class="point">She should stay back till she completes all her tasks.</span>
+			</div>
+   	        </div>
+			<div id="content5" class="content5">Select the appropriate response.</div>
+
+		<div id="tab" class="tab">
+			<span></span>	
+		</div>
+		<div id="common">
+			<div id="co1"><img src="../images/TM_01_03_right.png"></div>
+			<div id="co2"><img src="../images/TM_01_03_up.png"></div>
+			<div id="co3"><img src="../images/TM_01_03_clock.png"></div>			
+		</div>
+		<div id="instruction">Click<b> Next</b> to continue.</div>
+           </div><!--textContainer-->	
+    <!--Audio-->
+       <audio id="audio1" ontimeupdate='timedCount(this);' onEnded="enableClick();">
+        <source src="../audio/TM_PYWT_01_new.mp3" type="audio/mpeg"/>
+        <source src="../audio/TM_PYWT_01_new.ogg" type="audio/ogg"/>
+       </audio>
+
+	<audio id="audio2" ontimeupdate="common_play();" onEnded="common_play();">
+        <source src="../audio/TM_PYWT_Opt1.mp3" type="audio/mpeg"/>
+        <source src="../audio/TM_PYWT_Opt1.ogg" type="audio/ogg"/>
+       </audio>
+	<audio id="audio3" ontimeupdate="common_play();" onEnded="common_play();">
+        <source src="../audio/TM_PYWT_Opt2.mp3" type="audio/mpeg"/>
+        <source src="../audio/TM_PYWT_Opt2.ogg" type="audio/ogg"/>
+       </audio>
+	<audio id="audio4" ontimeupdate="common_play();" onEnded="common_play();">
+        <source src="../audio/TM_PYWT_Opt3.mp3" type="audio/mpeg"/>
+        <source src="../audio/TM_PYWT_Opt3.ogg" type="audio/ogg"/>
+       </audio>
+	<audio id="audio5" ontimeupdate="common_play();" onEnded="common_play();">
+        <source src="../audio/TM_PYWT_Opt4.mp3" type="audio/mpeg"/>
+        <source src="../audio/TM_PYWT_Opt4.ogg" type="audio/ogg"/>
+       </audio>
+	<audio id="audio6" ontimeupdate="common();">
+        <source src="../audio/TM_PYWT_Opt1_1.mp3" type="audio/mpeg"/>
+        <source src="../audio/TM_PYWT_Opt1_1.ogg" type="audio/ogg"/>
+       </audio>
+
+<script type="text/javascript">
+var audio1 = document.getElementById("audio1");
+var audio2 = document.getElementById("audio2");
+var audio3 = document.getElementById("audio3");
+var audio4 = document.getElementById("audio4");
+var audio5 = document.getElementById("audio5");
+var audio6 = document.getElementById("audio6");
+audio1.preload="auto";
+audio2.preload="auto";
+audio3.preload="auto";
+audio4.preload="auto";
+audio5.preload="auto";
+audio6.preload="auto";
+parent.currentAudio = audio1;
+
+s="<p>To understand the importance of prioritisation, let’s take a look at this scenario.</p>";
+s=s + "<p>Linda has a tough day at work today. She has many documentation tasks that need to be completed today. Apart from these tasks, she also needs to attend a client meeting and an important training session. She feels overburdened with work and she doesn’t know where to start.</p>";
+s=s + "<p>What do you think Linda should do? Select the appropriate response.</p>";
+parent.document.getElementById("transcript").innerHTML = s;
+var c=Math.floor(parent.currentAudio.currentTime);
+var totalContents=Math.floor(parent.currentAudio.duration);
+function timedCount()
+{		
+	document.getElementById("ipadPlay").style.display = 'none';
+	parent.updateSlider();	
+	c=Math.floor(parent.currentAudio.currentTime);
+	//document.getElementById("trace").innerHTML = c;
+		
+		if (c==1)
+		{
+			$("#content2").css({'display':'block'});
+			$("#content2").addClass("sliderighttomiddle");
+			window.setTimeout(handsup,500);
+		}
+		if(c==4)//4
+		{
+			$("#content2").fadeOut(1000);
+		}
+		if (c==5)//5
+		{
+			//$("#content2").css({'display':'none'});
+						
+			$("#content3").css({'display':'block'});
+			//$("#content3 div#c1").animate({"opacity":"1","top":"0px"},200);
+			$("#content3 div#c1").fadeIn(500);
+			setTimeout(function(){
+				$("#content3 div#c2").animate({"opacity":"1","height":"401px"},500);
+				//$("#content3 div#c2").slideDown(500);
+				setTimeout(function(){$("#content3 div#c3").animate({"opacity":"1","left":"0px"},500);},500);
+			},100);
+			
+			
+		}
+		if (c==25)//25
+		{
+			$("#content3 div#c3").animate({"opacity":"0","left":"70px"},300);
+			setTimeout(function(){
+				$("#content3 div#c2").css({'opacity':'1'});
+				$("#content3 div#c2").animate({"opacity":"0","height":"10px"},300);
+				setTimeout(function(){$("#content3 div#c1").animate({"opacity":"0","top":"30px"},100);},300);
+			},200);
+				
+		}
+		if (c==27)//26
+		{
+			$("#content3").css({'display':'none'});
+			$("#content4").fadeIn(500);
+			$("#content4").css('z-index','1000');	
+		}
+		if(c==28)//28
+		{
+			$("#content5").addClass("sliderighttomiddle");
+		}
+}
+function enableClick()
+{
+	flag=1;
+	$(".point").css({'cursor':'pointer'});
+	$(".image_com").css({'cursor':'pointer'});	
+	$(".image_com1").css({'cursor':'pointer'});
+	
+}
+function result(no)
+{
+	if(flag==1)
+	{
+	s="";
+	$("#content4").css({"display":"none"});
+	$("#content5").css({"display":"none"});
+	$("#tab").css({"display":"block"});
+	$("#tab").fadeIn(1000);
+	document.getElementById("audio1").pause();
+	if(no==1)
+	{
+		s="This is the story of everyone’s life. There is too much to do and too little time to do it in. Rather than feeling overburdened Linda needs to organise her work in order of urgency and importance.";
+		parent.currentAudio = audio2;
+		parent.playAudio(audio2);
+	}
+	else if(no==2)
+	{
+		s="It is not necessary that you receive tasks in the order of urgency.  If Linda starts working on the tasks in the order in which she received them, she might end up working on a task that was not urgent or important and the urgent task may have to wait for its turn.";	
+		parent.currentAudio = audio3;
+		parent.playAudio(audio3);
+	}
+	else if(no==3)
+	{
+		s="Way to go! I like the way you think.";
+		parent.currentAudio = audio4;
+		parent.playAudio(audio4);
+	}
+	else if(no==4)
+	{
+		s="Along with hard work you also need to work smart. Rather than waiting back and completing all the tasks, Linda should organise her work in order of urgency and importance and focus on completing them. The not so urgent or less important tasks can be done later.";	
+		parent.currentAudio = audio5;
+		parent.playAudio(audio5);
+	}
+	$("#tab span").html(s);
+	s1= "<p>" + s + "</p>";
+	s1=s1 + "<p>Prioritising your time means organising your work tasks in order of urgency or importance. By doing this, you can be sure that all important jobs are finished on time and not left to the last minute.</p>";
+	parent.document.getElementById("transcript").innerHTML = s1;
+	}
+	previoustime=parent.currentAudio.duration - 1;
+	totaltime=previoustime + document.getElementById("audio6").duration;
+
+}
+
+function common_play()
+{
+	c=Math.floor(parent.currentAudio.currentTime);
+	e=Math.floor(parent.currentAudio.duration);
+	if(c==e-1)
+	{
+		parent.playAudio(audio6);
+		playing=1;
+		s="Prioritising your time means organising your work tasks in order of urgency or importance. By doing this, you can be sure that all important jobs are finished on time and not left to the last minute.";
+		window.setTimeout(function(){
+		$("#tab span").html(s);},1000);
+	}
+	else
+	{
+		
+		sliderLocal();
+	}
+}
+function common()
+{
+	sliderLocal();
+	c=Math.floor(parent.currentAudio.currentTime);
+	e=Math.floor(parent.currentAudio.duration);
+	if(c==4)
+	{
+		$("#common").fadeIn(1000);
+	}
+	else if(c==5)
+	{
+		$("#common div#co2").animate({"opacity":"1","top":"0"});
+	}
+	else if(c==6)
+	{
+		
+		$("#common div#co1").animate({"opacity":"1","left":"0"});
+	}
+	else if(c==7)
+	{
+		$("#common div#co3").addClass("bouncein");
+	}
+	if(c==e-1)
+	{
+		$("#instruction").addClass("sliderighttomiddle");
+	}		
+}
+var flag=0;
+$(document).ready(function()
+{
+	$(".point").hover(function(){
+		if(flag==1)
+		{
+			$(this).css({'color':'#ffcc66'});
+		}
+	},function(){$(this).css({'color':'white'});});
+	
+	$(".image_com").hover(function(){
+		if(flag==1)
+		{
+			$(this).css({'z-index':'0'});
+		}
+	},function(){$(this).css({'z-index':'3'});});
+	$(".image_com1").hover(function(){
+		if(flag==1)
+		{
+			$(this).css({'z-index':'4'});
+		}
+	},function(){$(this).css({'z-index':'1'});});
+});
+function sliderLocal()
+{
+	//space=length * currentAudio.currentTime/currentAudio.duration;
+	
+	if(playing==0)
+	{
+		current=parent.currentAudio.currentTime;	
+	}
+	else
+	{
+		current=previoustime + parent.currentAudio.currentTime;	;	
+	}
+		w=parent.document.getElementById("slider");
+	space=($(w).width()) * (current)/totaltime;
+	
+	if((space)<=parent.length)
+	{
+		w=parent.document.getElementById("resizebar");
+		$(w).width(space);
+	}
+}
+</script>
+</body>
+</html>

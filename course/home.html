@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=yes" />
+<title>Time Management</title>
+<link rel="stylesheet" type="text/css" href="css/media-queries.css"/>
+<link rel="stylesheet" type="text/css" href="css/reset.css"/>
+<link rel="stylesheet" type="text/css" href="css/main.css"/>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+
+<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui.min.js"></script> 
+<script type="text/javascript" src="js/courseMap.js"></script>
+<script type="text/javascript" src="js/loadXML.js"></script>
+<script type="text/javascript" src="js/navigation.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/lms.js"></script>
+<script type="text/javascript">
+//Loading::::::::::::::::::::::::::::::::
+	$(window).load(function(){
+
+     if($(window).width()<=600)
+       {
+         $("#slider_container").css({ 'display' : 'none'});
+		   }
+
+    $("#loader").css("display","none");		
+		if(isLms=="true"){
+			getValuesFromLms();
+		}else{
+			//document.getElementById("introContainer").src= "intro.html";	
+		}
+	});
+	
+	$(document).ready(function()
+	{
+		length=$("#slider").width();
+
+
+
+      $("#slider").bind('click', function (ev) {
+          var $div = $(ev.target);
+          var $display = $div.find('.display');
+          
+          var offset = $div.offset();
+          var x = ev.clientX - offset.left;
+          var y = ev.clientY - offset.top;
+          
+          
+                    currentAudio.currentTime =  x * currentAudio.duration / length;
+
+                    space = length * currentAudio.currentTime/currentAudio.duration;
+                     
+                    if(paused==false)
+                      {
+                       playPaueBtn=document.getElementById('playPaueBtn');
+                       playPaueBtn.className = 'pauseBtn'; 
+                       currentAudio.play(); 
+                      }  
+                    
+
+      });
+
+
+
+    $( "#draggable" ).draggable(
+       {
+         containment: "parent"
+       },
+       {
+        start: function( event, ui ) 
+                  {
+                     
+                          currentAudio.pause();
+                          paused = false;
+                  }
+       },
+       {
+          axis: "x"
+        },
+       {
+          stop: function( event, ui ) 
+                  { 
+
+                    var left = $(this).css("left");
+                    left = left.substring(0,(left.length)-2)
+
+                    left = parseInt(left);                    
+
+                   
+
+                    currentAudio.currentTime =  left* currentAudio.duration / length;
+
+                    space = length * currentAudio.currentTime/currentAudio.duration;
+                     
+                    if(paused==false)
+                      {
+                       currentAudio.play();
+                       playPaueBtn=document.getElementById('playPaueBtn');
+                       playPaueBtn.className = 'pauseBtn'; 
+                      }
+                    else
+                     {
+                      alert("paused is true");
+                     }    
+                  
+
+                    // $(this).css("left",space+"px");                      
+                    // alert( space +"-----"+left);
+ 
+                  }
+       }
+   );
+		
+
+
+
+
+
+           var slider_on=false; 
+
+                    sliderBtn=document.getElementById('sliderBtn');
+                    sliderBtn.addEventListener('click',showslider,false);
+
+
+
+
+     function showslider() {
+     
+             if(slider_on==false)
+               {
+                
+                 $("#slider_container").css({ 
+                                      "display": "block",
+                                      "position": "absolute",
+                                      "left": "0px",
+                                      "top": "-41%",
+                                      "width": "100%",
+                                      "height": "20px",
+                                      "background": "#009EF7",
+                                      "display" : "block"
+                                   });
+
+                  var slider_left = ($(window).width()-340)/2;
+                      slider_left = slider_left -5;
+
+                   $("#slider").css({ "position": "absolute",
+                                      "left": slider_left + "px",
+                                      "top": "-10px",
+                                      "display" : "block"
+                                   });
+                    slider=document.getElementById('slider');
+                    slider.style.display="block !important";
+
+
+            
+                    slider_on=true;
+               }
+               else
+               {
+                slider_on=false;
+                 $("#slider_container").css({ 'display' : 'none'});
+               }
+
+     }
+
+
+ 
+          $(window).resize(function(){
+   
+             if($(window).width()<=600)
+               {
+                   var slider_left = ($(window).width()-340)/2;
+                       slider_left = slider_left -5;
+                   
+                   $("#slider").css({ "position": "absolute",
+                                      "left": slider_left + "px",
+                                      "top": "-10px",
+                                      "display" : "none"
+                                   });
+                   $("#slider_container").css({   "display" : "none"});
+                    slider_on=false; 
+               }   
+             else
+                {
+                                   $("#slider_container").css({ 
+                                      "display": "block",
+                                      "position": "",
+                                      "left": "",
+                                      "top": "%",
+                                      "width": "",
+                                      "height": "",
+                                      "background": "",
+                                      "display":"block"
+                                   });
+
+                         $("#slider").css({ "position": "",
+                                            "float":"right",
+                                             "display" : "block"
+                                   });
+                }    
+
+          });
+  
+
+
+
+
+
+	});
+</script>
+</head>
+<body>
+<div id="bodyContainer">
+ 	<!--loading--> 
+	<div id="loader" class="loader">
+       	<img src="images/loading.gif"/>
+    </div>  
+ 
+	<div id="wrapper">
+    	<!--<iframe id="introContainer" style="position:absolute; width:1010px; height:670px; z-index:9998;"></iframe> -->
+		<div id="parent">
+      
+          <img id="wide" src="images/Accenture_Logo-06.png" alt="Paris" style="height: 30px; width:auto;margin-right: auto;padding: 5px 30px 0px 30px;">
+      
+        <div id="courseTitle"></div>
+      </div>
+
+
+        <div id="lessonTitle"></div>
+        
+       <!--pageContainer--> 	   
+       <div id="stage" style="height:490px;">
+			<iframe id="pageContainer" style="100%"></iframe>
+       </div>     
+       
+        <!--ttpane--> 
+	<div id="ttpane">
+    		<div id="transcript"><p>Lorem</p></div>
+	</div>
+    
+    <!--footer--> 
+ 	<div id="footer">     	
+	    <div id="navButtons"> 
+        <div id="menuBtnTooltip" class="toolTip" align="center"><p>Menu</p></div>
+        <div id="audioBtnTooltip" class="toolTip" align="center" style="margin-left:45px !important; width:80px !important;"><p>Audio Off</p></div>
+        <div id="ttBtnTooltip" class="toolTip" align="center" style="margin-left:84px !important; width:100px !important;"><p>Transcript On</p></div>
+        <div id="helpBtnTooltip" class="toolTip" align="center" style="margin-left:154px !important;"><p>Help</p></div>
+        <div id="replayBtnTooltip" class="toolTip" align="center" style="margin-left:757px !important;"><p>Replay</p></div>
+        <div id="playPaueBtnTooltip" class="toolTip" align="center" style="margin-left:803px !important;"><p>Pause</p></div>
+        <div id="backBtnTooltip" class="toolTip" align="center" style="margin-left:855px !important; margin-top:-28px !important;"><p>Back</p></div>
+        <div id="nextBtnTooltip" class="toolTip" align="center" style="margin-left:935px !important; margin-top:-28px !important;"><p>Next</p></div>   
+    	<ul>        	
+            <li><a href="#" onFocus="this.blur();" class="menuBtn" id="menuBtn"></a></li>  
+            <li><a href="#" onFocus="this.blur();" class="audioBtn" id="audioBtn"></a></li>
+            <li><a href="#" onFocus="this.blur();" class="ttBtn" id="ttBtn"></a></li>
+            <li><a href="#" onFocus="this.blur();" class="helpBtn" id="helpBtn"></a></li>
+	          <li><a href="#" onFocus="this.blur();" class="nextBtn" id="nextBtn"></a></li>            
+            <div id="pagecounter"><span id="currentPageNum"></span>/<span id="totalPageNum"></span></div>
+            <li><a href="#" onFocus="this.blur();" class="backBtn" id="backBtn"></a></li>
+            <li><a href="#" onFocus="this.blur();" class="pauseBtn" id="playPaueBtn"></a></li>
+            <li><a href="#" onFocus="this.blur();" class="replayBtn" id="replayBtn"></a></li>
+            <li>	
+
+       <div id="slider_container">
+  				<div id="slider">
+    				<div id="fixbar"></div>
+    				<div id="resizebar"></div>
+            <div id="draggable"></div>
+  				</div>
+      </div>
+
+
+	    	</li>
+            <li><a href="#" onFocus="this.blur();" class="sliderBtn" id="sliderBtn" style="display: none;"></a></li>
+      	</ul>
+	</div>
+
+         <!--menupane--> 
+    <div id="menupane">
+    	
+    	<div id="menu">
+        	<p style="border-bottom:2px solid #999;"><b>Menu</b></p>
+        	<div id="lesson1" class="menuLessonTitle" style="display:block;">
+           		<p><a href="#" onFocus="this.blur();" id="0" onClick="loadPage(this.id)">Welcome!</a></p>
+                <p><a href="#" onFocus="this.blur();" id="1" onClick="loadPage(this.id)">Managing Your Time</a></p>
+            </div>
+        	<p id="lessonTitle2" class="menuLessonTitleArrow"><a onClick="showLesson(2)" href="#" onFocus="this.blur();">Prioritising Your Tasks</a></p>
+        	<div id="lesson2" class="menuPageTitle">
+           		<p><a href="#" onFocus="this.blur();" id="2" onClick="loadPage(this.id)">Prioritising Your Work Tasks</a></p>
+                <p><a href="#" onFocus="this.blur();" id="3" onClick="loadPage(this.id)">Factors to Consider</a></p>
+            </div>
+            <p id="lessonTitle3" class="menuLessonTitleArrow"><a onClick="showLesson(3)" href="#" onFocus="this.blur();">Cutting Down on Time Wasters</a></p>
+        	<div id="lesson3" class="menuPageTitle">
+           		<p><a href="#" onFocus="this.blur();" id="4" onClick="loadPage(this.id)">Cutting Down on Time Wasters</a></p>
+                <p><a href="#" onFocus="this.blur();" id="5" onClick="loadPage(this.id)">Conclusion</a></p>
+            </div>
+            <div id="lesson4" class="menuLessonTitle" style="display:block;">
+           		<p><a href="#" onFocus="this.blur();" id="6" onClick="loadPage(this.id)">Summary</a></p>
+            </div>
+            <div id="lesson5" class="menuLessonTitle" style="display:block;">
+           		<p><a href="#" onFocus="this.blur();" id="7" onClick="loadPage(this.id)">Assessment</a></p>
+            </div>
+         </div>
+    </div>
+    <!-- / menupane-->
+  	</div>    
+      <!--/ footer-->          
+</div>
+<!--wrapper-->
+<script>
+loadCourseMap();
+</script>
+</div>
+<!--bodyContainer-->
+</body>
+</html>

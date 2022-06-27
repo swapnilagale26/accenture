@@ -1,0 +1,270 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<title></title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../css/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../css/main.css"/>
+<link rel="stylesheet" type="text/css" href="../css/TM_01_01.css"/>
+<script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+<script type="text/javascript" src="../js/jquery-ui.min.js"></script> 
+<script type="text/javascript" src="../js/jquery.transit.min.js"></script> 
+<script type="text/javascript">
+//Loading::::::::::::::::::::::::::::::::
+var i=1;
+function loading(){
+
+var standalone = window.navigator.standalone,
+	userAgent = window.navigator.userAgent.toLowerCase(),
+	safari = /safari/.test( userAgent ),
+    ios = /iphone|ipod|android|ipad/.test( userAgent );
+
+
+
+	if(ios) {
+		document.getElementById("ipadPlay").style.display = 'block';
+		parent.playHigh();
+	}else{
+		parent.playAudio(audio1);	
+	}
+	$("#loader").css("display","none");	
+	window.removeEventListener("load", loading, false);
+			
+}
+function handsup()
+{
+	
+	if(i<7)
+	{
+		c1="#content1 div#c" + i;
+		i++;
+		c2="#content1 div#c" + i;
+		$(c1).css({'display':'none'});
+		$(c2).css({'display':'block'});
+		window.setTimeout(handsup,40);
+	}	
+}
+function handsdown()
+{
+	if(i>1)
+	{
+		c1="#content1 div#c" + i;
+		i--;
+		c2="#content1 div#c" + i;
+		$(c1).css({'display':'none'});
+		$(c2).css({'display':'block'});
+		temp=window.setTimeout(handsdown,40);
+	}	
+}
+window.addEventListener("load", loading, false);
+</script>
+</head>
+<body>
+	<div id="loader" class="loader">
+       	<img src="../images/loading.gif"/>
+    </div>
+    <div id="ipadPlay" class="blanketIpad">
+    	<span>Click <b>Play</b> to continue.</span>
+    </div>  
+   
+            <div class="textContainer">
+
+			        <div id="content0" class="child content0" appear_at="0" disappear_at="50"></div>	
+
+					<div id="content1" class="child content1"  appear_at="0" disappear_at="50">
+						<div id="c1" style="display:block;"><img src="../images/character/char0001.png"/></div>
+						<div id="c2"><img src="../images/character/char0002.png" /></div>
+						<div id="c3"><img src="../images/character/char0003.png" /></div>
+						<div id="c4"><img src="../images/character/char0004.png" /></div>
+						<div id="c5"><img src="../images/character/char0005.png" /></div>
+						<div id="c6"><img src="../images/character/char0006.png" /></div>
+						<div id="c7"><img src="../images/character/char0007.png" /></div>
+						<!--div id="c8"><img src="../images/character/char0008.png" width="299"/></div-->
+					</div>
+
+					<div id="content2" class="child content2"  appear_at="1" disappear_at="16">
+						<div style="margin-left:115px;">
+						<span>Welcome </span><span>to the</span></div><div><span>Jeopardy</span></div>
+					</div>
+
+
+					<div id="content3_back" style="display:none;position:absolute;width:100%;height:490px;background-color:black;opacity:0.4" class="child "  appear_at="16" disappear_at="50"></div>
+
+			        <div id="content3" class="child content3"  appear_at="16" disappear_at="50">
+
+			            <p style="">Pleae move ahead and start the game</p>   
+			
+			                
+					</div>
+
+					<div id="content4" class="child content4"  appear_at="33" disappear_at="50"><i>Click <b>Next</b> to continue.</i></div>
+                                 
+    	     
+            </div><!--textContainer-->	
+    <!--Audio-->
+       <audio id="audio1" ontimeupdate='timedCount(this);'>
+        <source src="../audio/TM_Splash_Intro_01_new.mp3" type="audio/mpeg"/>
+        <source src="../audio/TM_Splash_Intro_01_new.ogg" type="audio/ogg"/>
+       </audio>
+	
+
+<script type="text/javascript">
+var audio1 = document.getElementById("audio1");
+var appear_at;
+var disappear_at;
+
+
+parent.currentAudio = audio1;
+
+var displayed=false;
+
+s="<p>Welcome to the Time Management course!<p>My name is Jane and I will be your guide throughout this course. This course provides information on prioritising your tasks and avoiding time wasters, and in doing so, can help you better manage your time.</p>";
+s=s + "<p>Upon completion of this course, you will be able to:</p>";
+s=s + "<ul><li>List the steps that help in managing time at work.</li>";
+s=s + "<li>State the factors considered while prioritising tasks.";
+s=s + "<li>Describe how to avoid time wasters.</li></ul>";
+parent.document.getElementById("transcript").innerHTML = s;
+
+var c=Math.floor(parent.currentAudio.currentTime);
+var totalContents=Math.floor(parent.currentAudio.duration);
+function timedCount()
+{		
+	document.getElementById("ipadPlay").style.display = 'none';
+	parent.updateSlider();	
+	c=Math.floor(parent.currentAudio.currentTime);
+
+    var n = $( ".textContainer .child" ).length;
+  
+
+    for(var i=1; i<=n; i++)
+       {
+           	appear_at = $(".textContainer .child:nth-child("+i+")").attr("appear_at");
+         	disappear_at =$(".textContainer .child:nth-child("+i+")").attr("disappear_at")
+
+       	    if(c >= appear_at && c <= disappear_at)
+       	     {
+       	        $(".textContainer .child:nth-child("+i+")").css("display", "block");
+
+    
+       	           if ( $(".textContainer .child:nth-child("+i+")").children().length > 0 )
+       	              {
+
+
+					    for(var k=appear_at; k<=c; k++)
+					       {
+					   	     manage_content(k);			
+					       }  
+                      }
+				
+       	     }
+       	    else
+       	     {
+ 				$(".textContainer .child:nth-child("+i+")").css("display", "none");	
+       	     } 	 
+       }
+	
+	manage_content(c);			
+
+}
+
+function manage_content(c)
+         {
+				if (c==1)
+				{	
+					$("#content2").css({'display':'block'});
+					$("#content2 div:first-child span:first-child").addClass("slidelefttoright"); 
+					//to the
+					window.setTimeout(function(){
+					$("#content2 div:first-child span:last-child").addClass("growtext");},500);
+					
+				}
+				if(c==2)
+				{
+					//time management course
+					$("#content2 div:last-child span:first-child").addClass("slidelefttoright");
+					window.setTimeout(handsup,500);
+				}
+				if(c==4)
+				{
+					//handsdown();
+				}
+				if(c==15)//15
+				{
+					//remove delay of animation and classes added
+					$("#content2 div:first-child span:last-child").css({'animation-delay':'0s'});
+					$("#content2").removeClass("slidelefttoright").addClass("slideouttoright");
+			
+
+				}
+
+				if (c==16)//16
+				{
+					//hide previous content as new content is loading & remove class
+					$("#content2").css({'display':'none'});
+					$("#content2").removeClass("slideouttoright");
+					
+					//display background and clipboard
+					$("#content3").css({'display':'block'});
+					$("#content3_back").fadeIn();
+					$("#content3").addClass("slidetoptobottom");
+					$("#content3 p").css({'animation-delay':'0.5s'});	
+				}
+				if (c==17)//17
+				{
+					//upon completion
+					$("#content3 p").addClass("sliderighttomiddle");
+					//window.setTimeout(handsup,1000);
+				}
+				if(c==19)
+				{
+					//handsdown();
+				}
+				if (c==21)//21
+				{
+					//point 1
+					$("#content3 div img").eq(0).addClass("bouncein");
+					$("#content3 div span").css({'animation-delay':'0.5s'});
+					$("#content3 div span").eq(0).addClass("sliderighttomiddle");
+					//window.setTimeout(handsup,500);
+					
+				}
+				if(c==23)
+				{
+					//handsdown();
+				}
+				if (c==25)//25
+				{
+					//point 2
+					$("#content3 div img").eq(1).addClass("bouncein");
+					$("#content3 div span").css({'animation-delay':'0.5s'});
+					$("#content3 div span").eq(1).addClass("sliderighttomiddle");
+					
+				}
+				if (c==29)//29
+				{
+					//point 3
+					$("#content3 div img").eq(2).addClass("bouncein");
+					$("#content3 div span").css({'animation-delay':'0.5s'});
+					$("#content3 div span").eq(2).addClass("sliderighttomiddle");
+					
+					
+				}
+				if(c==33)
+				{
+					
+					$("#content4").fadeIn(200);
+				}
+
+
+         }
+
+function timer(id1,id2)
+{
+	$(id1).css({transform:'scale(1)'});
+	$(id2).animate({opacity:'1',marginLeft:0},700);
+	
+}
+</script>
+</body>
+</html>
