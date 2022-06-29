@@ -18,6 +18,7 @@ var isSafari = false;
 var isChrome = false;
 var length=0;
 var isLms = false;
+var attempt=0;
 //LMS variables
 var isLms = window.opener._isLms;
 if(isLms=="true"){
@@ -92,8 +93,9 @@ function loadCourseMap()
 			 nextBtn=document.getElementById('nextBtn');			 
 	}
 //Load page:::::::::::::::::::::
-function loadPage(id){	
+function loadPage(id){
 		enableAllBtns();
+		document.getElementsByClassName("quebutton").innerHTML = "abcsk";
 		//disableAllBtns();
 		currentPageNum = Number(id);
 		var currentFileName;

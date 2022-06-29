@@ -1,6 +1,6 @@
 // JavaScript Document
 courseMap="<courseMap>";
-courseMap=courseMap+"<course title='Time Management'>";
+courseMap=courseMap+"<course title='Module Assessment'>";
 
 //Lesson 1
 courseMap=courseMap+"<lesson01 title='Welcome!'>";

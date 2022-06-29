@@ -56,8 +56,33 @@ body
 #topgamebar{
 	position: relative;
 	z-index: 999;
+	margin-top: 50px;
 }
-
+#myVideo {
+	object-fit: cover;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  }
+  #continuebtn{
+	position: fixed;
+    bottom: 33px;
+    width: 121px;
+    height: 34px;
+    /* height: auto; */
+    margin-left: 314px;
+    border: 0px solid #d6d6d6;
+    z-index: 9999;
+    /* border-radius: 50%; */
+    padding: 0;
+    text-align: center;
+    /* background: yellow; */
+    cursor: pointer;
+	
+  }
 .topline
 {
 	width:100%;
@@ -331,4 +356,61 @@ body
 }
 @media screen and (max-width: 240px) {
 
+}
+
+
+@media screen and (max-width: 479px) { 
+
+
+	  #continuebtn{
+		margin-left: 250px;
+	  }
+	
+}
+
+@media screen and (max-width: 1016px) { 
+	#continuebtn{
+	margin-left: 429px;
+	
+	}
+	
+}
+
+@media screen and (max-width: 900px) {
+
+	#continuebtn{
+	margin-left: 368px;
+	}
+	
+}
+
+@media screen and (max-width: 830px) { 
+	
+	#continuebtn{
+	margin-left: 250px;
+	}
+}
+
+
+@media screen and (max-width: 768px) { 
+		#continuebtn{
+	margin-left: 290px;
+	}
+	
+}
+
+@media screen and (max-width: 500px) { 
+	
+	#continuebtn{
+		margin-left: 174px;
+		}
+	
+}
+
+
+@media screen and (max-width: 400px) { 
+		#continuebtn{
+	margin-left: 106px;
+	}
+	
 }

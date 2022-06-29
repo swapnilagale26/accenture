@@ -9,7 +9,7 @@ function init()
 	window.setTimeout(function()
 	{
 		$("#options").fadeIn(500);
-		$("#instruction").animate({'opacity':'1','margin-left':'70px'},500);
+		$("#instruction").animate({'opacity':'1','margin-left':'305px', 'font-size':'13px'},500);
 		$("#submit").fadeIn(500);
 	},500);
 }
@@ -62,6 +62,11 @@ if(lock==0)
 }
 }
 
+function retry(){
+parent.loadPage(1);
+
+}
+
 function checkAnswer()
 {
 	if(submit==1)
@@ -94,13 +99,22 @@ function checkAnswer()
 				}
 			}
 		}
-		displayfeedback(temp);
-		$("#instruction").css({'display':'none'});
-		$("#submit").css({'display':'none'});
-		/*$("#feedback").css({'display':'block'});
-		$("#feedback").animate({'margin-left':'67px'},500);*/
-		$("#feedback").fadeIn(500);
-		$("#feedback div").html(s);
-		$(".right").css({'opacity':'1'});
-	}
+	// 	displayfeedback(temp);
+	// 	$("#instruction").css({'display':'none'});
+	// 	$("#submit").css({'display':'none'});
+	// 	/*$("#feedback").css({'display':'block'});
+	// 	$("#feedback").animate({'margin-left':'67px'},500);*/
+	// 	$("#feedback").fadeIn(500);
+	// 	$("#feedback div").html(s);
+	// 	$(".right").css({'opacity':'1'});
+	// }
+	displayfeedback(temp);
+	$("#correct-popup").css({'display':'block'});
+	$("#submit").css({'display':'none'});
+	/*$("#feedback").css({'display':'block'});
+	$("#feedback").animate({'margin-left':'67px'},500);*/
+	$("#feedback").fadeIn(500);
+	$("#feedback div").html(s);
+	$(".right").css({'opacity':'1'});
+}
 }

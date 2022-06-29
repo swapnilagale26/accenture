@@ -5,916 +5,217 @@
 <meta charset="utf-8" />
 <link rel="stylesheet" type="text/css" href="../css/reset.css"/>
 <link rel="stylesheet" type="text/css" href="../css/main.css"/>
-<link rel="stylesheet" type="text/css" href="../css/TM_01_05.css"/>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+
+<link rel="stylesheet" type="text/css" href="../css/TM_01_02.css"/>
 <script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="../js/common.js"></script>
 <script type="text/javascript" src="../js/jquery-ui.min.js"></script> 
-<script type="text/javascript" src="../js/jquery.transit.min.js"></script> 
-<script type="text/javascript" src="../js/countdown.js"></script>
+<script type="text/javascript" src="../js/jquery.transit.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
 <script type="text/javascript">
+
+	function Continue(){
+		parent.loadPage(7);
+	}
 //Loading::::::::::::::::::::::::::::::::
-var m=45,s=0;
-var correct=0;
-var question=0;
-var qflag=[0,0,0,0,0,0];
-var start=0;
-var bounce=0;
-var timer=1;
-var pass=-1;
-function loading(){	
-		if(parent.ios) {
-			document.getElementById("ipadPlay").style.display = 'block';
-			parent.playHigh();
-		}else{
-			parent.playAudio(audio1);	
-		}
-		$("#loader").css("display","none");
-		totalTime = 600000;
-		//updateTime();			
-		window.removeEventListener("load", loading, false);		
+var i=1;
+function loading(){
+	if(parent.ios) {
+		document.getElementById("ipadPlay").style.display = 'block';
+		parent.playHigh();
+	}else{
+		parent.playAudio(audio1);	
+	}
+	$("#loader").css("display","none");
+	window.removeEventListener("load", loading, false);			
+}
+function handsup()
+{
+	
+	if(i<7)
+	{
+		c1="#content1 div#c" + i;
+		i++;
+		c2="#content1 div#c" + i;
+		$(c1).css({'display':'none'});
+		$(c2).css({'display':'block'});
+		window.setTimeout(handsup,40);
+	}
+		
 }
 window.addEventListener("load", loading, false);
-
-/*function showScenario(id){
-	$("#"+id+"Popup").fadeIn('fast');
-	document.getElementById(id).disabled = true;
-}
-function submitScenario(id, currPopID, nextBtnID){
-	if (id=="incorrect"){
-		totalTime-=180000;
-	}
-	
-	if (nextBtnID==""){
-		if (timeLeft<=180000){
-			$("#fail").fadeIn('fast');
-		}else{
-			$("#pass").fadeIn('fast');
-		}
-			clearTimeout(startTimer);		
-	}else{
-		document.getElementById("scenario"+nextBtnID).disabled = false;
-	}
-	$("#scenario"+currPopID+"Popup").fadeOut('fast');
-}*/
-
 </script>
-<style>
-#q1 #here, #q2 #here, #q3 #here, #q4 #here, #q5 #here,#q1 #here1, #q2 #here1, #q3 #here1, #q4 #here1, #q5 #here1{
-	cursor:default !important;
+<style type="text/css">
+body{background:url('../images/pg_02_background.png') no-repeat}
+/*.imgContainer{
+	-webkit-transform:scale(1);
+	-moz-transform:scale(1);
+	-o-transform:scale(1);		
+	-ms-transform:scale(1);			
+     transform:scale(1);				
+	-webkit-transition:all 1s;	 
+	cursor:pointer;
+	}
+.imgContainer:hover{
+	-webkit-transform:scale(1.2);
+	-moz-transform:scale(1.2);	
+	-o-transform:scale(1.2);	
+	-ms-transform:scale(1.2);	
+	 transform:scale(1.2);	
+	}*/	
+.scale{
+	-webkit-transform:scale(1.2);
+	-moz-transform:scale(1.2);	
+	-o-transform:scale(1.2);	
+	-ms-transform:scale(1.2);	
+	 transform:scale(1.2);	
+	}	
+
+.lock{
+	position:absolute;
+	opacity:1;
+	top:0px;
+	width:700px;
+	height:400px; 
+	border:0px solid !important; 
+	right:0px; 
+	z-index:1000;
+	}	
+.bouncein
+{
+	animation:bouncein 2s forwards;
+	-webkit-animation:bouncein 1.5s forwards;
+	-moz-animation:bouncein 2s forwards;
+	-o-animation:bouncein 2s forwards;
+	-ms-animation:bouncein 2s forwards;
 }
+@keyframes bouncein
+{
+	0%{opacity:1;-webkit-transform:scale(1);}
+	50%{opacity:1;-webkit-transform:scale(1.2);}
+	100%{opacity:1;-webkit-transform:scale(1);}
+} 
+@-webkit-keyframes bouncein
+{
+	0%{opacity:1;-webkit-transform:scale(1);}
+	50%{opacity:1;-webkit-transform:scale(1.2);}
+	100%{opacity:1;-webkit-transform:scale(1);}
+} 
+@-moz-keyframes bouncein
+{
+	0%{opacity:1;-webkit-transform:scale(1);}
+	50%{opacity:1;-webkit-transform:scale(1.2);}
+	100%{opacity:1;-webkit-transform:scale(1);}
+} 
+@-o-keyframes bouncein
+{
+	0%{opacity:1;-webkit-transform:scale(1);}
+	50%{opacity:1;-webkit-transform:scale(1.2);}
+	100%{opacity:1;-webkit-transform:scale(1);}
+} 
+@-ms-keyframes bouncein
+{
+	0%{opacity:1;-webkit-transform:scale(1);}
+	50%{opacity:1;-webkit-transform:scale(1.2);}
+	100%{opacity:1;-webkit-transform:scale(1);}
+} 
+
 </style>
 </head>
-<body style="background-image:url(../images/TM_01_01_img1.jpg); background-repeat:no-repeat;">
+<body>
 	<div id="loader" class="loader">
        	<img src="../images/loading.gif"/>
     </div>
     <div id="ipadPlay" class="blanketIpad">
     	<span>Click <b>Play</b> to continue.</span>
     </div> 
-    <div id="content1">
-    <div id="trace"></div>
-    	<div id="table"><img src="../images/p05/table.png"></div>
-	<div id="jim"><img src="../images/p05/jim.png"></div>
-        <div id="mobile" onClick="quiz(1);"><img src="../images/p05/mobile.png"></div>
-        <div id="file"><img src="../images/p05/file.png"></div>
-        <div id="doc" onclick="quiz(5);" ><img src="../images/p05/document.png"></div>
-        <div id="telephone"><img src="../images/p05/telephone.png"></div>
-        
-        <div id="laptop"><img src="../images/p05/laptop.png"></div>
-    </div>
            <div class="textContainer">
-           	<!--Countdown--> 	
-                <div id="countdownholder">
-                   	<div style="font-size:16px"><span>Min</span><span>Sec</span></div>
-			<div><span>45</span><span>:</span><span>00</span></div>
-                </div>
-		<!--Countdown-->
-		
-		<div id="content2"></div>
-		<div id="content3" class="content3"><img src="../images/character/char0007.png"></div>
-		<div id="content4"><img src="../images/p05/p05_01.png"></div>
-		<div id="content5"><p>Jim's manager has asked him to create a presentation that will provide an overview of their company's products and services. The manager intends to present this material to prospective clients, whom he is expecting in an hour. Since he needs time to go through the presentation and review it, he has asked Jim to complete it in 45 minutes. </p>
-			<p>While performing this task, Jim will encounter distractions that occur in a regular work day. You need to help Jim deal with them in order to maintain a cordial environment and ensure that he finishes his task on time. So what are you waiting for? Let's take the challenge...</p>
-		</div>
-		<div id="content6" onClick="start_quiz();"><img src="../images/p05/start.png"></div>
-		<div id="content7">Click <b>start</b> to begin.</div>
-            
-		<div id="q1">
-			<div id="q">
-        			<div id="board"><img src="../images/p05/q1/board1.png"></div>
-            			<div id="question"><div class="verticalmiddle">Jim receives a personal call from one of his close friends. What should Jim do?</div></div>
-				<div id="option1" onclick="submit(0)"><img src="../images/p05/q1/icon_phone.png"><span>Place the task on hold, step outside and answer the call.</span></div>
-				<div id="option2" onclick="submit(1)"><img src="../images/p05/q1/icon_email.png"><span>Send his friend a message stating that he is busy and will call him later.</span></div>
-			</div>
-			<div id="here" ><img src="../images/p05/p05_clickhere_dn_01.png"></div>
-			<div id="here1" ><img src="../images/p05/p05_clickhere_dn_02.png"></div>
-			<div id="character" style="">
-				<div id="c1"><img src="../images/p05/q1/jim_seq1.png"></div>
-				<div id="c2"><img src="../images/p05/q1/jim_seq2.png"></div>
-				<div id="c3"><img src="../images/p05/q1/jim_seq3.png"></div>
-				<div id="c4"><img src="../images/p05/q1/jim_seq4.png"></div>
-				<div id="c5"><img src="../images/p05/q1/jim_seq5.png"></div>
-				<div id="c6"><img src="../images/p05/q1/jim_seq6.png"></div>
-			</div>
+			<video autoplay id="myVideo">
+				<source src="../images/Problem.mp4" type="video/mp4">
+				Your browser does not support HTML5 video.
+			  </video>
+           <div id="trace"></div>
+		   <div id="continuebtn" onClick="Continue()"></div>
+
+
+		   <!-- <div id="topgamebar">
+			<p class="topline">Welcome to the japardy game</p>
+	
+			<p class="topline">Score: <p id="jepScore"></p> </span></p>
 			
-		</div>
-		
-		<div id="q2" >
-			<div id="q">
-        			<div id="board"><img src="../images/p05/q2/board2.png"></div>
-            			<div id="question"><div class="verticalmiddle">Jim is struggling to animate the objects in the presentation. Mark, his team member, notices this and offers to help him. What should Jim do?</div></div>
-				<div id="option1" onclick="submit(0)"><img src="../images/p05/q2/icon_thumb.png"><span style="margin-top:0px">Thank Mark for offering help and continue working on the task.</span></div>
-				<div id="option2" onclick="submit(1)"><img src="../images/p05/q2/icon_cursor.png"><span>Ask Mark to demonstrate how <br>it is done so that he can do it for the rest of the presentation.</span></div>
-			</div>
-			<div id="help" onclick="quiz(2);" ><img src="../images/p05/q2/help.png"></div>
-			<div id="here" onclick="quiz(2);" ><img src="../images/p05/p05_clickhere_L_01.png"></div>
-			<div id="here1" onclick="quiz(2);" ><img src="../images/p05/p05_clickhere_L_02.png"></div>
-			<div id="character">
-				<div id="c1"><img src="../images/p05/q2/jim_seq1.png"></div>
-				<div id="c2"><img src="../images/p05/q2/jim_seq2.png"></div>
-			</div>
-			<div id="character1">
-				<div id="c1"><img src="../images/p05/q2/mark1.png"></div>
-				<div id="c2"><img src="../images/p05/q2/mark2.png"></div>
-				<div id="c3"><img src="../images/p05/q2/mark3.png"></div>
-				<div id="c4"><img src="../images/p05/q2/mark4.png"></div>
-				<div id="c5"><img src="../images/p05/q2/mark5.png"></div>
-			</div>
-		</div>
-		
-		<div id="q3">
-			<div id="q">
-        			<div id="board"><img src="../images/p05/q3/board3.png"></div>
-            			<div id="question"><div class="verticalmiddle">Someone from the HR department is calling him. What should Jim do?</div></div>
-				<div id="option1" onclick="submit(1)"><img src="../images/p05/q3/icon_phone.png"><span>Answer the call and check if it is important.</span></div>
-				<div id="option2" onclick="submit(0)"><img src="../images/p05/q3/icon_volume.png"><span>Place the phone on silent and focus on the task.</span></div>
-			</div>
-			<div id="here" onclick="quiz(3);" ><img src="../images/p05/p05_clickhere_dn_01.png"></div>
-			<div id="here1" onclick="quiz(3);" ><img src="../images/p05/p05_clickhere_dn_02.png"></div>
-			<div id="phone" onclick="quiz(3);">
-				<div id="c1"><img src="../images/p05/q3/phone_ring1.png"></div>
-				<div id="c2"><img src="../images/p05/q3/phone_ring2.png"></div>
-				<div id="c3"><img src="../images/p05/q3/phone_ring3.png"></div>
-				<div id="c4"><img src="../images/p05/q3/phone_ring4.png"></div>
-				<div id="c5"><img src="../images/p05/q3/phone_ring5.png"></div>
-				<div id="c6"><img src="../images/p05/q3/phone_ring6.png"></div>
-				<div id="c7"><img src="../images/p05/q3/phone_ring7.png"></div>
-				<div id="c8"><img src="../images/p05/q3/phone_ring8.png"></div>
-				<div id="c9"><img src="../images/p05/q3/phone_ring9.png"></div>
-				<div id="c10"><img src="../images/p05/q3/phone_ring10.png"></div>
-				<div id="c11"><img src="../images/p05/q3/phone_ring11.png"></div>
-				<div id="c12"><img src="../images/p05/q3/phone_ring12.png"></div>
-				<div id="c13"><img src="../images/p05/q3/phone_ring13.png"></div>
-				<div id="c14"><img src="../images/p05/q3/phone_ring14.png"></div>
-				<div id="c15"><img src="../images/p05/q3/phone_ring15.png"></div>
-				<div id="c16"><img src="../images/p05/q3/phone_ring16.png"></div>
-				<div id="c17"><img src="../images/p05/q3/phone_ring17.png"></div>
-				<div id="c18"><img src="../images/p05/q3/phone_ring18.png"></div>
-				<div id="c19"><img src="../images/p05/q3/phone_ring19.png"></div>
-				<div id="c20" onclick="quiz(3);"><img src="../images/p05/q3/phone_ring20.png"></div>
+			<div id="outer">
+				<p class="buttonheadings">ABC Topic</p>
+				<p class="buttonheadings">EFG Topic</p>
 				
-			</div>
-			
-		</div>
-		
-		<div id="q4">
-			<div id="q">
-        			<div id="board"><img src="../images/p05/q4/board4.png"></div>
-            			<div id="question"><div class="verticalmiddle">Melisa, Jim’s colleague, says she has heard something interesting about his manager, and asks him to join her on a coffee break. What should Jim do?</div></div>
-				<div id="option1" onclick="submit(0)"><img src="../images/p05/q4/icon_speech.png"><span style="margin-top:10px">Ask Melisa for the details.</span></div>
-				<div id="option2" onclick="submit(1)"><img src="../images/p05/q4/icon_sandclock.png"><span>Tell Melisa that he is busy and<br>he will get back to her in an hour.</span></div>
-			</div>
-			<div id="here" onclick="quiz(4);" ><img src="../images/p05/p05_clickhere_dn_01.png"></div>
-			<div id="here1" onclick="quiz(4);" ><img src="../images/p05/p05_clickhere_dn_02.png"></div>
-			<div id="coffee" onclick="quiz(4);"><img src="../images/p05/q4/coffeeMug.png"></div>
-			<div id="character" >
-				<div id="c1"><img src="../images/p05/q4/melisa1.png"></div>
-				<div id="c2"><img src="../images/p05/q4/melisa2.png"></div>
-				<div id="c3"><img src="../images/p05/q4/melisa3.png"></div>
-				<div id="c4"><img src="../images/p05/q4/melisa4.png"></div>
-				<div id="c5"><img src="../images/p05/q4/melisa5.png"></div>
-				<div id="c6"><img src="../images/p05/q4/melisa6.png"></div>
-				<div id="c7"><img src="../images/p05/q4/melisa7.png"></div>
-			</div>
+			  </div>
+			<div id="outer">
+				<a href="#" onclick="parent.loadPage(7)" class="button">100$</a>
+				<a href="#" class="button" onclick="parent.loadPage(9)">100$</a>
 				
+			  </div>
+			  <div id="outer">
+				<a href="#" class="button" onclick="parent.loadPage(8)">200$</a>
+				<a href="#" class="button" onclick="parent.loadPage(7)">200$</a>
 			
-		</div>	
+			  </div>
+			  <div id="outer">
+				<a href="#" class="button" onclick="parent.loadPage(8)">300$</a>
+				<a href="#" class="button" onclick="parent.loadPage(9)">300$</a>
+				
+			  </div>
 
-		<div id="q5" >
-			<div id="q">
-        			<div id="board"><img src="../images/p05/q5/board5.png"></div>
-            			<div id="question"><div class="verticalmiddle">Earlier, Jim was assigned some documentation work that needs to be completed immediately. He is not sure if both tasks need to be completed at the same time. What should Jim do?</div></div>
-				<div id="option1" onclick="submit(1)"><img src="../images/p05/q5/icon_phone.png"><span style="margin-top:10px">Call his manager to confirm.</span></div>
-				<div id="option2" onclick="submit(0)"><img src="../images/p05/q5/icon_doc.png"><span>Complete both tasks to prove that he is efficient.</span></div>
-			</div>
-			<div id="here" onclick="quiz(5);" ><img src="../images/p05/p05_clickhere_dn_01.png"></div>
-			<div id="here1" onclick="quiz(5);" ><img src="../images/p05/p05_clickhere_dn_02.png"></div>
-			<div id="character" ><img src="../images/p05/q5/jim.png"></div>			
-		</div>		
+			</div> -->
 
-
-            <!--Options-->
-		
-            	<div id="result">
-			<div id="correct" >
-				<div id="c1"><img src="../images/p05/Feedback_correct/feedback_correct1.png"></div>
-				<div id="c2"><img src="../images/p05/Feedback_correct/feedback_correct2.png"></div>
-				<div id="c3"><img src="../images/p05/Feedback_correct/feedback_correct3.png"></div>
-				<div id="c4"><img src="../images/p05/Feedback_correct/feedback_correct4.png"></div>
-				<div id="c5"><img src="../images/p05/Feedback_correct/feedback_correct5.png"></div>
-				<div id="c6"><img src="../images/p05/Feedback_correct/feedback_correct6.png"></div>
-				<div id="c7"><img src="../images/p05/Feedback_correct/feedback_correct7.png"></div>
-				<div id="c8"><img src="../images/p05/Feedback_correct/feedback_correct8.png"></div>
-				<div id="c9"><img src="../images/p05/Feedback_correct/feedback_correct9.png"></div>
-				<div id="c10"><img src="../images/p05/Feedback_correct/feedback_correct10.png"></div>
-				<div id="c11"><img src="../images/p05/Feedback_correct/feedback_correct11.png"></div>
-				<div id="c12"><img src="../images/p05/Feedback_correct/feedback_correct12.png"></div>
-				<div id="c13"><img src="../images/p05/Feedback_correct/feedback_correct13.png"></div>
-				<div id="c14"><img src="../images/p05/Feedback_correct/feedback_correct14.png"></div>
-				<div id="c15"><img src="../images/p05/Feedback_correct/feedback_correct15.png"></div>
-				<div id="c16"><img src="../images/p05/Feedback_correct/feedback_correct16.png"></div>
-				<div id="c17"><img src="../images/p05/Feedback_correct/feedback_correct17.png"></div>
-			</div>
-			<div id="incorrect">
-				<div id="c1"><img src="../images/p05/feeback_incorrect/feedback_incorrect1.png"></div>
-				<div id="c2"><img src="../images/p05/feeback_incorrect/feedback_incorrect2.png"></div>
-				<div id="c3"><img src="../images/p05/feeback_incorrect/feedback_incorrect3.png"></div>
-				<div id="c4"><img src="../images/p05/feeback_incorrect/feedback_incorrect4.png"></div>
-				<div id="c5"><img src="../images/p05/feeback_incorrect/feedback_incorrect5.png"></div>
-				<div id="c6"><img src="../images/p05/feeback_incorrect/feedback_incorrect6.png"></div>
-				<div id="c7"><img src="../images/p05/feeback_incorrect/feedback_incorrect7.png"></div>
-				<div id="c8"><img src="../images/p05/feeback_incorrect/feedback_incorrect8.png"></div>
-				<div id="c9"><img src="../images/p05/feeback_incorrect/feedback_incorrect9.png"></div>
-				<div id="c10"><img src="../images/p05/feeback_incorrect/feedback_incorrect10.png"></div>
-				<div id="c11"><img src="../images/p05/feeback_incorrect/feedback_incorrect11.png"></div>
-				<div id="c12"><img src="../images/p05/feeback_incorrect/feedback_incorrect12.png"></div>
-				<div id="c13"><img src="../images/p05/feeback_incorrect/feedback_incorrect13.png"></div>
-				<div id="c14"><img src="../images/p05/feeback_incorrect/feedback_incorrect14.png"></div>
-				<div id="c15"><img src="../images/p05/feeback_incorrect/feedback_incorrect15.png"></div>
-				<div id="c16"><img src="../images/p05/feeback_incorrect/feedback_incorrect16.png"></div>
-				<div id="c17"><img src="../images/p05/feeback_incorrect/feedback_incorrect17.png"></div>
-			</div>
-			<div id="resulttext"><p ></p></div>
-		</div>
-
-		<div id="score">
-			<div id="c1"><img /></div>
-			<div id="c2"><img /></div>
-			<div id="c3"><img /></div>
-			<div id="c4"><img /></div>
-			<div id="c5"><img /></div>
-			<img id="correct" src="../images/p05/legend_correct.png">
-			<img id="incorrect" src="../images/p05/legend_incorrect.png">
-		</div>
-
-		<div id="finalresult">
-			<div id="back"></div>
-			<div id="pass"><img src="../images/p05/congratulations_bg.png"/><img src="../images/p05/stars.png"/><div><p>Congratulations!</p><p>You’ve helped Jim avoid time wasters and successfully complete his task.</p></div></div>
-			<div id="fail"><img src="../images/p05/try_again_bg.png"/><div><p>Your time’s up!</p><p> You’ve not helped Jim avoid time wasters and complete his task.</p></div><div id="retrybutton" onClick="restartquiz();"></div></div>
-			<div id="continue" class="instruction">Click <b>Next</b> to continue.</div>
-			<div id="retry" class="instruction">Click <b>Retry</b> to play again.</div>
-		</div>
-            <!--Options-->
+		   
+	
            </div><!--textContainer-->	
     <!--Audio-->
-       <audio id="audio1" onended='enableStart();' ontimeupdate='timedCount(this);'>
-        <source src="../audio/TM_CDTW_Intro_02_new.mp3" type="audio/mpeg"/>
-        <source src="../audio/TM_CDTW_Intro_02_new.ogg" type="audio/ogg"/>
+       <audio id="audio1" ontimeupdate='timedCount(this);'>
+        <source src="../audio/TM_MYT_01.mp3" type="audio/mpeg"/>
+        <source src="../audio/TM_MYT_01.ogg" type="audio/ogg"/>        
        </audio>
-	<audio id="audio2" onended='enable()'>
-        <source src="../audio/TM_CDTW_Q1.mp3" type="audio/mpeg"/>
-        <source src="../audio/TM_CDTW_Q1.ogg" type="audio/ogg"/>
-       </audio>
-	<audio id="audio3" onended='enable()'>
-        <source src="../audio/TM_CDTW_Q2.mp3" type="audio/mpeg"/>
-        <source src="../audio/TM_CDTW_Q2.ogg" type="audio/ogg"/>
-       </audio>
-	<audio id="audio4" onended='enable()'>
-        <source src="../audio/TM_CDTW_Q4.mp3" type="audio/mpeg"/>
-        <source src="../audio/TM_CDTW_Q4.ogg" type="audio/ogg"/>
-       </audio>
-	<audio id="audio5" onended='enable()'>
-        <source src="../audio/TM_CDTW_Q3.mp3" type="audio/mpeg"/>
-        <source src="../audio/TM_CDTW_Q3.ogg" type="audio/ogg"/>
-       </audio>
-	<audio id="audio6" onended='enable()'>
-        <source src="../audio/TM_CDTW_Q5.mp3" type="audio/mpeg"/>
-        <source src="../audio/TM_CDTW_Q5.ogg" type="audio/ogg"/>
-       </audio>
-	<audio id="audio7" loop>
-        <source src="../audio/mobile.mp3" type="audio/mpeg"/>
-        <source src="../audio/mobile.ogg" type="audio/ogg"/>
-       </audio>
-	<audio id="audio8" loop>
-        <source src="../audio/telephone.mp3" type="audio/mpeg"/>
-        <source src="../audio/telephone.ogg" type="audio/ogg"/>
-       </audio>
-	<audio id="audio9" onended="instruct();">
-        <source src="../audio/TM_PYWT_Congrats.mp3" type="audio/mpeg"/>
-        <source src="../audio/TM_PYWT_Congrats.ogg" type="audio/ogg"/>
-       </audio>
-	<audio id="audio10" onTimeUpdate="retryInstruction();">
-        <source src="../audio/TM_PYWT_Retry.mp3" type="audio/mpeg"/>
-        <source src="../audio/TM_PYWT_Retry.ogg" type="audio/ogg"/>
-       </audio>
+
 
 <script type="text/javascript">
-var audio1 = document.getElementById('audio1');
+var audio1 = document.getElementById("audio1");
 audio1.preload="auto";
 parent.currentAudio = audio1;
-document.getElementById('audio2').preload="auto";
-document.getElementById('audio3').preload="auto";
-document.getElementById('audio4').preload="auto";
-document.getElementById('audio5').preload="auto";
-document.getElementById('audio6').preload="auto";
-document.getElementById('audio7').preload="auto";
-document.getElementById('audio8').preload="auto";
-document.getElementById('audio9').preload="auto";
-document.getElementById('audio10').preload="auto";
-str="<p>Before learning about time wasters, let’s take a look at this scenario.</p>";
-str=str + "<p>Jim’s manager has asked him to create a presentation that will provide an overview of their company’s products and services. The manager intends to present this material to prospective clients, whom he is expecting in an hour. Since he needs time to go through the presentation and review it, he has asked Jim to complete it in 45 minutes. </p>";
-str=str + "<p>While performing this task, Jim will encounter distractions that occur in a regular work day. You need to help Jim deal with them in order to maintain a cordial environment and ensure that he finishes his task on time. So what are you waiting for? Let’s take the challenge… <br>Click Start to begin.</p>";
-parent.document.getElementById("transcript").innerHTML = str;
+
+
+
+
+parent.document.getElementById("transcript").innerHTML =  "<p>In order to be effective at a workplace, you need to be able to make the most of the time that you have. <br/>You can manage your time at work better by:<br/><ul><li>Prioritising your work tasks</li><li>	Cutting down on time wasters.</li></ul></p>";
 var c=Math.floor(parent.currentAudio.currentTime);
 var totalContents=Math.floor(parent.currentAudio.duration);
-
 function timedCount()
-{	
-document.getElementById("ipadPlay").style.display = 'none';
-	parent.updateSlider();		
+{		
+	document.getElementById("ipadPlay").style.display = 'none';
+	parent.updateSlider();	
 	c=Math.floor(parent.currentAudio.currentTime);
+	document.getElementById("jepScore").innerHTML="Score is: " + parent.jepScore + ".";
+
 	//document.getElementById("trace").innerHTML = c;
-	//document.getElementById("trace").innerHTML = c;
-	if(c==0)
-	{
-		$(".content3").animate({'opacity':'1'});
-	}
-	if(c==4)//4.5
-	{
-		$(".content3").animate({'opacity':'0'});
-	}
-	if(c==5)//5
-	{
-		$(".content3").css({'display':'none'});
-		$("#content4").fadeIn();
-		$("#content5").fadeIn();
-		$("#content6").fadeIn();
+	    if(c==1){window.setTimeout(handsup,500);}
+		if (c==1){
+
+			$("#content2").animate({opacity:'1'},800);
+			$("#content3").animate({opacity:'.5', marginTop:'60'},800)
+			$("#content4").animate({opacity:'.5', marginTop:'20'},800);	
+			}
 		
-	}
-	if(c==45)//45
-	{
-		$("#content7").addClass("slideinleft50");	
-		
-	}
-	
-}
-function enableStart()
-{
-	//enable start button
-	start=1;
-	$("#content6").css({'cursor':'pointer'});
-}
-function showtime()
-{
-if(timer==1)
-{
-	if(s<=0)
-	{
-		m--;
-		if(m>=0)
-		{
-			s=59;	
-		}	
-	}
-	else
-	{
-		s--;
-	}
-	if(m<0)
-	{
-		m=s=-1;
-		timer=0;
-		window.setTimeout(displayfailresult,2000);	
-		$("#countdownholder div:eq(1) span:eq(0)").html("00");
-		$("#countdownholder div:eq(1) span:eq(2)").html("00");
-	}
-	if(m!=-1)
-	{
-	temp1=m%10;
-	temp=(Math.floor(m/10))%10;
-	$("#countdownholder div:eq(1) span:eq(0)").html(temp+""+temp1);
-	temp1=s%10;
-	temp=(Math.floor(s/10))%10;
-	$("#countdownholder div:eq(1) span:eq(2)").html(temp+""+temp1);
-	}
-	window.setTimeout(showtime,1000);
-}
-}
-function start_quiz()
-{
-	if(start==1)
-	{
-		$("#content2").fadeOut(200);
-		$("#content4").fadeOut(200);
-		$("#content5").fadeOut(200);
-		$("#content6").fadeOut(200);
-		$("#content7").fadeOut(200);
-		//parent.currentAudio.pause();
-		setTimeout(function()
-		{
-			$("#countdownholder").addClass("show_display");
-			setTimeout(function(){
-				
-				$("#q1").addClass("show_display");
-				$("#score").addClass("show_display");
-				question++;
-				showtime();
-				here();//toggle click here
-				bounce=$("#content1 div#mobile");
-				bounce.addClass("pointer");
-				$("#content1 div#mobile").addClass("bouncein");
-				temp=document.getElementById("audio7");
-				parent.playAudio(temp);
-								
-			},1000);		
-		},200);
-	}
-	
-}
-function here()
-{
-	str="#q" + question + " div#here1";
-	if(qflag[question]==0)
-	{
-		$(str).toggleClass("show");
-		window.setTimeout(here,150);
-	}
-}
-function quiz(id)//when user click on click here
-{
-if(timer==1)
-{
-if(id==question && qflag[question]==0)
-{
-	qflag[question]=1;
-	str="#q" + question + " div#here1";	//reomve here
-	$(str).addClass("hide_display");
-	str="#q" + question + " div#here";
-	$(str).addClass("hide_display");
-	bounce.removeClass("pointer");
-	str="#q" + question + " div#q";
-	
-	str1="audio" + (question+1);
-	//document.getElementById(str1).play();
-	temp=document.getElementById(str1);
-	parent.playAudio(temp);
-	//parent.playAudio(str1);
-	if(question==1)
-	{
-		parent.document.getElementById("transcript").innerHTML = "<p>Jim receives a personal call from one of his close friends. What should Jim do?</p>";
-		document.getElementById("audio7").pause();	
-		bounce.removeClass("bouncein");
-		$(str).addClass("show_display").addClass("slideinright400");
-		$("#content1 div#jim").addClass("hide_display");
-		$("#q1 div#character div#c1").addClass("show_display");
-		window.setTimeout(function(){images(1,6,"#q1 div#character div#c")},200);
-	}
-	else if(question==2)
-	{
-		parent.document.getElementById("transcript").innerHTML = "<p>Jim is struggling to animate the objects in the presentation. Mark, his team member, notices this and offers to help him. What should Jim do?</p>";
-		$(str).addClass("show_display").addClass("slideinright400");
-		$("#q2 div#help").removeClass("bouncein1");
-		
-	}
-	else if(question==3)
-	{
-		parent.document.getElementById("transcript").innerHTML = "<p>Someone from the HR department is calling him. What should Jim do?</p>";
-		document.getElementById("audio8").pause();
-		$(str).addClass("show_display").addClass("slideinleft400");
-		$("#q3 div#phone div").removeClass("show");
-		$("#content1 div#telephone").removeClass("hide_display");
-	}
-	else if(question==4)
-	{
-		parent.document.getElementById("transcript").innerHTML = "<p>Melisa, Jim’s colleague, says she has heard something interesting about his manager, and asks him to join her on a coffee break. What should Jim do?</p>";
-		$(str).addClass("show_display").addClass("slideinright400");
-		$("#q4 div#coffee").removeClass("bouncein");
-	}
-	else if(question==5)
-	{
-		parent.document.getElementById("transcript").innerHTML = "<p>Earlier, Jim was assigned some documentation work that needs to be completed immediately. He is not sure if both tasks need to be completed at the same time. What should Jim do?</p>";
-		$(str).addClass("show_display").addClass("slideinleft400");
-		$("#content1 div#doc").removeClass("bouncein");
-	}
-}
-}
-}
-function enable()
-{
-	qflag[question]=2;
-	str="#q" + question + " div#q div#option1";
-	$(str).addClass("pointer");
-	str="#q" + question + " div#q div#option2";
-	$(str).addClass("pointer");
-}
-function submit(answer)// when user select answer
-{
-if(timer==1)
-{
-	if(qflag[question]==2)//2
-	{
-		qflag[question]=3;
-		str="#q" + question + " div#q div#option1";
-		$(str).removeClass("pointer");
-		str="#q" + question + " div#q div#option2";
-		$(str).removeClass("pointer");
-		if(question==1)
-		{
-			$("#result").css({'margin':'400px 0px 0px 650px'});
-			if(answer==1)
-			{
-				correct++;
-				str="Good Job! You were able to help Jim save some time.";
-				showcorrect(str);
-			}
-			else
-			{
-				str="Oops! Jim just lost 15 minutes by following your advice.";
-				m=m-15;
-				showincorrect(str);
-			}
-			window.setTimeout(function()
-			{
-				removeresult();
-				$("#q1 div#q").removeClass("slideinright400").addClass("slideoutright400");
-				window.setTimeout(function(){images_rev(1,6,"#q1 div#character div#c","#content1 div#jim");},100);
-				window.setTimeout(function(){$("#q1").removeClass("show_display").fadeOut();
-					window.setTimeout(shownextquestion,500);
-				},1000);
-			
-			},2000);	
+		if (c==10){$("#content3").animate({opacity:'1'},500).addClass("bouncein");}
+		if (c==13){
+			$("#content4").animate({opacity:'1'},500).addClass("bouncein");
+      		//$("#content3").animate({opacity:'1'},500).removeClass("bouncein");
 		}
-		else if(question==2)
-		{
-			$("#result").css({'margin':'405px 0px 0px 650px'});
-			if(answer==1)
-			{
-				correct++;
-				str="Good Job! You were able to help Jim save some time.";
-				showcorrect(str);
-			}
-			else
-			{
-				str="Oops! Jim just lost 15 minutes by following your advice.";
-				m=m-15;
-				showincorrect(str);
-			}
-			window.setTimeout(function()
-			{
-				removeresult();
-				$("#q2 div#q").removeClass("slideinright400").addClass("slideoutright400");
-				$("#q2 div#character1").addClass("opacityout");
-				$("#q2 div#character div#c2").removeClass("show_display");
-				$("#content1 div#jim").removeClass("hide_display");
-				
-				$("#q2 div#help").addClass("hide_display");
-				
-				window.setTimeout(function(){$("#q2").removeClass("show_display");
-					window.setTimeout(shownextquestion,500);
-				},1000);
-			
-			},2000);
-		}
-		else if(question==3)
-		{
-			$("#result").css({'margin':'370px 0px 0px 10px'});
-			$("#result div#correct").css({'margin':'10px 0px 0px 0px'});
-			$("#result div#incorrect").css({'margin':'10px 0px 0px 0px'});
-			if(answer==1)
-			{
-				
-				correct++;
-				str="Good job! You were able to help Jim make sure he does not miss something important.";
-				showcorrect(str);
-			}
-			else
-			{
-				str="Oops! Jim just lost 15 minutes by following your advice.";
-				m=m-15;
-				showincorrect(str);
-			}
-			window.setTimeout(function()
-			{
-				removeresult();
-				$("#q3 div#q").removeClass("slideinleft400").addClass("slideoutleft400");
-				window.setTimeout(function(){$("#q3").removeClass("show_display");
-					window.setTimeout(shownextquestion,500);
-				},1000);
-			
-			},2000);
-		}
-		else if(question==4)
-		{
-			
-			$("#result").css({'margin':'385px 0px 0px 650px'});
-			$("#result div#correct").css({'margin':'5px 0px 0px 0px'});
-			$("#result div#incorrect").css({'margin':'5px 0px 0px 0px'});
-			if(answer==1)
-			{
-				correct++;
-				str="God job! You were able to help Jim save some time without being rude to his colleague.";
-				showcorrect(str);
-			}
-			else
-			{
-				str="Oops! Jim just lost 15 minutes by following your advice.";
-				m=m-15;
-				showincorrect(str);
-			}
-			window.setTimeout(function()
-			{
-				removeresult();
-				$("#q4 div#q").removeClass("slideinright400").addClass("slideoutright400");
-				$("#q4 div#character").addClass("opacityout");
-				$("#q4 div#coffee").addClass("opacityout");
-				window.setTimeout(function(){$("#q4").removeClass("show_display");
-					window.setTimeout(shownextquestion,500);
-				},1000);
-			
-			},2000);
-		}
-		else if(question==5)
-		{
-			$("#result").css({'margin':'385px 0px 0px 10px'});
-			$("#result div#correct").css({'margin':'10px 0px 0px 0px'});
-			$("#result div#incorrect").css({'margin':'10px 0px 0px 0px'});
-			if(answer==1)
-			{
-				correct++;
-				str="Good job! You were able to help Jim save some time and ensure he is prioritising his tasks.";
-				showcorrect(str);
-			}
-			else
-			{
-				str="Oops! Your advice made Jim lose focus in order to finish both the tasks quickly.";
-				m=m-15;
-				showincorrect(str);
-			}
-			window.setTimeout(function()
-			{
-				removeresult();
-				$("#q5 div#q").removeClass("slideinleft400").addClass("slideoutleft400");
-				$("#content1 div#jim").removeClass("hide_display");
-				$("#q5 div#character").removeClass("show_display");
-				window.setTimeout(function(){$("#q5").removeClass("show_display");
-					timer=0;
-					displaypassresult();
-					
-				},1000);
-			
-			},2000);
-		}
-		
-	}
+		if (c==14){$("#content2").animate({opacity:'0', zIndex:'0'},500);}	
+		if (c==15){$("#content5").animate({'opacity':'1'});}//addClass("sliderighttomiddle");				
+		if (c==16){//$("#content4").animate({opacity:'1'},500).removeClass("bouncein");
+		}			
 }
-}
-
-function shownextquestion()//to got to next question
-{
-if(timer==1)
-{
-	question++;
-	$("#q" + question).addClass("show_display");
-	
-	if(question==2)
-	{
-		$("#content1 div#jim").addClass("hide_display");
-		$("#q2 div#character div#c1").addClass("show_display");
-		$("#q2 div#character1 div#c1").addClass("show_display").addClass("slideinleft400");
-		window.setTimeout(function()
-		{
-			images(1,5,"#q2 div#character1 div#c");
-			window.setTimeout(function()
-			{
-
-				$("#q2 div#character div#c1").removeClass("show_display");
-				$("#q2 div#character div#c2").addClass("show_display");
-				here();
-				bounce=$("#q2 div#help");
-				bounce.addClass("pointer");
-				bounce.addClass("bouncein1");
-				
-			},300);
-		},600);	
-		
-				
-	}
-	else if(question==3)
-	{
-		$("#content1 div#telephone").addClass("hide_display");
-		$("#q3 div#phone div#c1").addClass("show");
-		phone(1,20,"#q3 div#phone div#c",0);
-		here();
-		bounce=$("#q3 div#phone");
-		bounce.addClass("pointer");	
-		document.getElementById("audio8").play();	
-	}
-	else if(question==4)
-	{
-		$("#q4 div#character div#c1").addClass("show_display").addClass("slideinleft400");	
-		window.setTimeout(function()
-		{
-			images(1,7,"#q4 div#character div#c");
-			window.setTimeout(function()
-			{
-				here();
-				bounce=$("#q4 div#coffee");
-				bounce.addClass("pointer");
-				$("#q4 div#coffee").addClass("show_display").addClass("bouncein");
-			},1000);
-		},510);
-	}
-	else if(question==5)
-	{
-		$("#q5 div#character").addClass("show_display");	
-		$("#content1 div#jim").addClass("hide_display");
-		window.setTimeout(function(){
-			here();
-			bounce=$("#content1 div#doc");
-			bounce.addClass("pointer");
-			$("#content1 div#doc").addClass("pointer");
-			$("#content1 div#doc").addClass("bouncein");
-		},100);
-
-	}
-}
-}
-
-function showcorrect(str)
-{
-	$("#result div#correct").css({'z-index':'10'});
-	$("#result div#correct div#c1").addClass("bounce");
-	window.setTimeout(function(){images(2,17,"#result div#correct div#c");},510);
-	$("#result div#resulttext p").html(str);
-	$("#result div#resulttext").fadeIn(300);
-
-	$("#score div#c" + question + " img").attr('src',$("#score img#correct").attr('src'));
-	$("#score div#c" + question).addClass("show_display").addClass("opacityin");
-}
-function showincorrect(str)
-{
-	$("#result div#incorrect").css({'z-index':'10'});
-	$("#result div#incorrect div#c1").addClass("bounce");
-	window.setTimeout(function(){images(2,17,"#result div#incorrect div#c");},510);
-	$("#result div#resulttext p").html(str);
-	$("#result div#resulttext").fadeIn(300);
-
-	$("#score div#c" + question + " img").attr('src',$("#score img#incorrect").attr('src'));		
-	$("#score div#c" + question).addClass("show_display").addClass("opacityin");
-}
-function removeresult()
-{
-	$("#result div#resulttext").fadeOut(300);
-	$("#result").css({'margin':'0px 0px 0px -500px'});
-	$("#result div#correct").css({'z-index':'0'});
-	$("#result div#incorrect").css({'z-index':'0'});
-	$("#result div#correct div#c1").removeClass("bounce");
-	$("#result div#correct div#c17").removeClass("show_display");
-	$("#result div#incorrect div#c1").removeClass("bounce");
-	$("#result div#incorrect div#c17").removeClass("show_display");	
-	$("#result div#correct").css({'margin':'0px 0px 0px 0px'});
-	$("#result div#iccorrect").css({'margin':'0px 0px 0px 0px'});
-}
-function phone(start,end,content)
-{
-	if(qflag[question]==0)
-	{
-		if(start<end)
-		{
-			start++;	
-			$(content + start).addClass("show");
-			$(content + (start-1)).removeClass("show");
-		}
-		if(start!=end)
-		{
-			window.setTimeout(function(){phone(start,end,content);},60);
-		}
-		else
-		{
-			$("#q3 div#phone div").removeClass("show");
-			$("#q3 div#phone div#c1").addClass("show");;
-			window.setTimeout(function(){phone(1,20,content);},60);
-		}
-	}	
-}
-
-function images(start,end,content)
-{
-	if(start<end)
-	{
-		start++;	
-		$(content + start).addClass("show_display");
-		$(content + (start-1)).removeClass("show_display");
-	}
-	if(start!=end)
-	window.setTimeout(function(){images(start,end,content);},60);
-}
-function images_rev(start,end,content,replace)
-{
-	if(end>start)
-	{
-		end--;	
-		$(content + end).addClass("show_display");
-		$(content + (end+1)).removeClass("show_display");
-	}
-	if(start!=end)
-	{
-		window.setTimeout(function(){images_rev(start,end,content,replace);},60);
-	}
-	else
-	{
-		$(replace).removeClass("hide_display");
-		$(content + end).removeClass("show_display");
-	}
-	
-	
-}
-
-function displaypassresult()
-{
-	pass=1;
-	$("#finalresult").addClass("show_display");
-	$("#finalresult div#back").addClass("show_display");
-	$("#finalresult div#pass").addClass("show_display").addClass("opacityin");
-	
-	$("#finalresult div#pass img:eq(1)").animate({'margin-top':'7px'},500);
-	//document.getElementById("audio9").play();
-	temp=document.getElementById("audio9");
-	parent.playAudio(temp);
-	parent.document.getElementById("transcript").innerHTML = "<p>Congratulations! You’ve helped Jim avoid time wasters and successfully complete his task.</p>";
-	
-}
-function displayfailresult()
-{
-	pass=0;
-	for(temp=1;temp<=10;temp++)
-	{
-		if(temp<=5)
-		{
-			str="#q" + temp;
-			$(str).removeClass("show_display");
-		}
-			str="audio" + temp;
-			document.getElementById(str).pause();
-	}
-	$("#result").css({'margin':'0px 0px 0px -500px'});
-	$("#content1 div#mobile").removeClass("bouncein");
-	$("#content1 div#doc").removeClass("bouncein");
-	$("#content1 div#jim").removeClass("hide_display");
-	$("#content1 div#telephone").removeClass("hide_display");
-	//display the timeup board
-	$("#finalresult").addClass("show_display");
-	$("#finalresult div#back").addClass("show_display");
-	$("#finalresult div#fail").addClass("show_display").addClass("opacityin");
-	//document.getElementById("audio10").play();
-	temp=document.getElementById("audio10");
-	parent.playAudio(temp);
-	parent.document.getElementById("transcript").innerHTML = "<p>Time’s up! You’ve not helped Jim avoid time wasters and complete his task.<br>Click Retry to play again.</p>";
-	
-}
-function restartquiz()
-{
-	location.reload();
-}
-function instruct()
-{
-	if(pass==1)
-	{
-		$("#finalresult div#continue").addClass("show_display").addClass("slideinright400");
-	}
-}
-function retryInstruction()
-{
-	c=Math.floor(parent.currentAudio.currentTime);
-	if(c==6)
-	{
-		$("#finalresult div#retry").addClass("show_display").addClass("slideinleft400");
-	}
-}
-//Good Job! You were able to help Jim save some time.
-//Good Job! You were able to help Jim save some time.
-//q3:correct=Good job! You were able to help Jim make sure he does not miss something important.
-//God job! You were able to help jim save some time without being rude to his colleague.
-//Good job! You were able to help Jim save some time and ensure he is prioritising his tasks.
-
-
-
-//INcorrect
-//Oops! Jim just lost 15 minutes by following your advice.
-//Oops! Jim just lost 15 minutes by following your advice.
-//Oops! Jim just lost 15 minutes by following your advice.
-//Oops! Jim just lost 15 minutes by following your advice.
-////Oops! Your advice made Jim lose focus in order to finish both the tasks quickly.
 </script>
 </body>
 </html>
