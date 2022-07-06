@@ -18,7 +18,8 @@
 <script type="text/javascript">
 
 	function Continue(){
-		parent.loadPage(3);
+		
+		parent.loadPage(4);
 	}
 //Loading::::::::::::::::::::::::::::::::
 var i=1;
@@ -139,6 +140,7 @@ body{background:url('../images/pg_02_background.png') no-repeat}
 			  </video>
            <div id="trace"></div>
 		   <div id="continuebtn" onClick="Continue()"></div>
+		   <div id="dispscore"></div>
 
 
 		   <!-- <div id="topgamebar">
@@ -190,6 +192,7 @@ parent.currentAudio = audio1;
 parent.document.getElementById("transcript").innerHTML =  "<p>In order to be effective at a workplace, you need to be able to make the most of the time that you have. <br/>You can manage your time at work better by:<br/><ul><li>Prioritising your work tasks</li><li>	Cutting down on time wasters.</li></ul></p>";
 var c=Math.floor(parent.currentAudio.currentTime);
 var totalContents=Math.floor(parent.currentAudio.duration);
+document.getElementById("dispscore").innerHTML=parent.score;
 function timedCount()
 {		
 	document.getElementById("ipadPlay").style.display = 'none';

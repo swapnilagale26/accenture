@@ -19,6 +19,7 @@ var isChrome = false;
 var length=0;
 var isLms = false;
 var attempt=0;
+var score1=10;
 //LMS variables
 var isLms = window.opener._isLms;
 if(isLms=="true"){

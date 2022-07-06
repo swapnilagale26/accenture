@@ -138,7 +138,8 @@ body{background:url('../images/pg_02_background.png') no-repeat}
 				Your browser does not support HTML5 video.
 			  </video>
            <div id="trace"></div>
-		   <div id="continuebtn" onClick="Continue()"></div>
+		   <div id="continuebtn" onClick="Continue()">ascas</div>
+
 
 
 		   <!-- <div id="topgamebar">
@@ -190,6 +191,8 @@ parent.currentAudio = audio1;
 parent.document.getElementById("transcript").innerHTML =  "<p>In order to be effective at a workplace, you need to be able to make the most of the time that you have. <br/>You can manage your time at work better by:<br/><ul><li>Prioritising your work tasks</li><li>	Cutting down on time wasters.</li></ul></p>";
 var c=Math.floor(parent.currentAudio.currentTime);
 var totalContents=Math.floor(parent.currentAudio.duration);
+var x = document.getElementById("continuebtn");
+  x.innerHTML= parent.score1;
 function timedCount()
 {		
 	document.getElementById("ipadPlay").style.display = 'none';

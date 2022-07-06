@@ -5,7 +5,7 @@ courseMap=courseMap+"<course title='Module Assessment'>";
 //Lesson 1
 courseMap=courseMap+"<lesson01 title='Welcome!'>";
 courseMap=courseMap+"<page title='Welcome!'>html/TM_01_01.html</page>";
-courseMap=courseMap+"<page title='Managing Your Time'>html/TM_01_02.html</page>";
+courseMap=courseMap+"<page title='Managing Your Time'>html/ok/TM_01_02.html</page>";
 courseMap=courseMap+"</lesson01>";
 //:::::::::::::::::::::::::::::::::
 
